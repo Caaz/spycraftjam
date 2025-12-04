@@ -6,6 +6,6 @@
 
 *Stuff not made by us*
 
-Name / Link | License | Description
-- | - | - | -
-[Phantom Camera](https://github.com/ramokz/phantom-camera) | MIT | Used to handle camera movement.
+| Name / Link | License | Description |
+| --- | --- | --- |
+| [Phantom Camera](https://github.com/ramokz/phantom-camera) | MIT | Used to handle camera movement. |
