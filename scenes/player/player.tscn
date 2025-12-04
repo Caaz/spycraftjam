@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxbdadubp20yj"]
+
+[ext_resource type="Script" uid="uid://xc6d4olh234n" path="res://scenes/player/player.gd" id="1_8afob"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7p2l"]
+radius = 0.3
+height = 1.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8afob"]
+radius = 0.3
+height = 1.7
+
+[sub_resource type="PrismMesh" id="PrismMesh_8afob"]
+size = Vector3(0.2, 0.5, 0.2)
+
+[node name="Player" type="CharacterBody3D"]
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_8afob")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_x7p2l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+mesh = SubResource("CapsuleMesh_8afob")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.378952, 0.5137713)
+mesh = SubResource("PrismMesh_8afob")

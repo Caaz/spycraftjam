@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://fg7sgt6htso8"]
+
+[ext_resource type="PackedScene" uid="uid://2tmaj5dj4fbh" path="res://models/tileset/tileset.blend" id="1_cwr67"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cwr67"]
+data = PackedVector3Array(-0.5, 0, 0.5, -0.5, 2, -0.5, -0.5, 2, 0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 2, -0.5, -0.5, 0, -0.5, 0.5, 2, -0.5, -0.5, 2, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 2, -0.5, 0.5, 0, -0.5, 0.5, 2, 0.5, 0.5, 2, -0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 2, 0.5, 0.5, 0, 0.5, -0.5, 2, 0.5, 0.5, 2, 0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 2, 0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 2, -0.5, -0.5, 2, 0.5, -0.5, 2, -0.5, 0.5, 2, -0.5, 0.5, 2, 0.5, -0.5, 2, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7r458"]
+data = PackedVector3Array(-0.5, 0, 0.5, -0.5, 0.84999996, -0.5, -0.5, 0.84999996, 0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0.84999996, -0.5, -0.5, 0, -0.5, 0.5, 0.84999996, -0.5, -0.5, 0.84999996, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0.84999996, -0.5, 0.5, 0, -0.5, 0.5, 0.84999996, 0.5, 0.5, 0.84999996, -0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0.84999996, 0.5, 0.5, 0, 0.5, -0.5, 0.84999996, 0.5, 0.5, 0.84999996, 0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0.84999996, 0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0.84999996, -0.5, -0.5, 0.84999996, 0.5, -0.5, 0.84999996, -0.5, 0.5, 0.84999996, -0.5, 0.5, 0.84999996, 0.5, -0.5, 0.84999996, 0.5)
+
+[node name="tileset" instance=ExtResource("1_cwr67")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_cwr67")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Desk" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_7r458")
