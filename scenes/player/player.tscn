@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxbdadubp20yj"]
+[gd_scene load_steps=12 format=3 uid="uid://bxbdadubp20yj"]
 
 [ext_resource type="Script" uid="uid://xc6d4olh234n" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="PackedScene" uid="uid://dr1715rmdu61u" path="res://models/player/player.blend" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://dct7ju4egqly" path="res://scenes/player/player_animator.gd" id="3_gmlin"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7p2l"]
 radius = 0.3
@@ -13,7 +15,29 @@ height = 1.7
 [sub_resource type="PrismMesh" id="PrismMesh_8afob"]
 size = Vector3(0.2, 0.5, 0.2)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dovo2"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmlin"]
+animation = &"sneak"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_lvxji"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_dovo2")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_gmlin")
+blend_point_1/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p47bc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_75vfm"]
+states/Movement/node = SubResource("AnimationNodeBlendSpace1D_lvxji")
+states/Movement/position = Vector2(518, 12)
+transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_p47bc")]
+
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 3
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_8afob")
@@ -24,8 +48,54 @@ shape = SubResource("CapsuleShape3D_x7p2l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_8afob")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.378952, 0.5137713)
+visible = false
 mesh = SubResource("PrismMesh_8afob")
+
+[node name="player" parent="." instance=ExtResource("2_dovo2")]
+
+[node name="Skeleton3D" parent="player/Armature" index="0"]
+bones/1/position = Vector3(0, 0.6623868, -0.037024464)
+bones/1/rotation = Quaternion(0.15169315, -0.00337518, 0.006968426, 0.98839736)
+bones/2/rotation = Quaternion(0.22718266, -0.010053355, 0.015145077, 0.97368246)
+bones/3/rotation = Quaternion(-0.0066270074, 0.0071024755, 0.0004942356, 0.9999527)
+bones/4/rotation = Quaternion(-0.27645382, -0.0075076018, -0.018090319, 0.9608277)
+bones/7/rotation = Quaternion(-0.45912287, -0.06876388, -0.54753053, 0.6961954)
+bones/8/rotation = Quaternion(-4.06791e-08, -4.7652815e-08, -0.40985855, 0.9121491)
+bones/25/rotation = Quaternion(0.73593694, -0.0017166092, -0.004902348, 0.6770302)
+bones/27/rotation = Quaternion(-0.3362982, -0.39020124, 0.044072445, 0.8559814)
+bones/28/rotation = Quaternion(-2.7357315e-08, 3.0304502e-08, 0.6400632, 0.7683222)
+bones/29/rotation = Quaternion(-0.07539029, -0.22741327, -0.034873713, 0.9702492)
+bones/45/rotation = Quaternion(0.73593694, 0.0017164485, 0.00490253, 0.67703015)
+bones/46/rotation = Quaternion(0.6155151, -0.3449203, -0.62332255, 0.33710557)
+bones/47/rotation = Quaternion(0.49626762, 0.50370467, -0.49626756, 0.50370497)
+bones/48/rotation = Quaternion(-0.27209654, -0.652659, 0.2720964, 0.6526587)
+bones/49/rotation = Quaternion(0.51336336, -0.49875426, 0.51339376, 0.47342288)
+bones/50/rotation = Quaternion(0.505429, 0.49668652, 0.49574125, 0.50208026)
+bones/51/rotation = Quaternion(0.5905487, -0.3889116, 0.59054875, 0.38891166)
+bones/52/rotation = Quaternion(0.14702041, 0.691654, 0.14702034, 0.6916537)
+bones/53/rotation = Quaternion(0.5423024, 0.43431333, -0.59457976, 0.40466654)
+bones/54/position = Vector3(-0.055700272, 0.86776, 1.5091271)
+bones/55/position = Vector3(0.0712026, 0.094765395, -0.07952907)
+bones/55/rotation = Quaternion(0.99002033, 0.014512883, -0.0807767, 0.11456126)
+bones/56/position = Vector3(0.0712026, 0.48596153, 0.63573146)
+bones/57/position = Vector3(0.30381572, 0.89551675, -0.22899288)
+bones/58/position = Vector3(0.2593025, 0.6469612, 0.35307866)
+bones/59/position = Vector3(-0.0712026, 0.23860884, 0.081601225)
+bones/59/rotation = Quaternion(0.9937867, -0.06614536, 0.03789623, -0.08109643)
+bones/60/position = Vector3(-0.0712026, 0.48596153, 0.63573146)
+bones/61/position = Vector3(-0.30381572, 0.89551675, -0.22899288)
+bones/62/position = Vector3(-0.2593025, 0.7751899, -0.08884064)
+
+[node name="PlayerAnimator" type="AnimationTree" parent="."]
+root_node = NodePath("../player")
+tree_root = SubResource("AnimationNodeStateMachine_75vfm")
+anim_player = NodePath("../player/AnimationPlayer")
+parameters/Movement/blend_position = 1.9579679999999997
+script = ExtResource("3_gmlin")
+
+[editable path="player"]

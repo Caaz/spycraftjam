@@ -1,0 +1,1 @@
+class_name Translocator extends Node3D

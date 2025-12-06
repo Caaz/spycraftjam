@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2rowday7qqdn"]
+
+[ext_resource type="Script" uid="uid://cr2ebjkfbcou8" path="res://scenes/thrown_translocator/thrown_translocator.gd" id="1_cx1qh"]
+[ext_resource type="PackedScene" uid="uid://cb4mc3gtoi0qj" path="res://models/translocator/translocator.blend" id="1_lxutm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cx1qh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cx1qh"]
+radius = 0.3
+
+[node name="ThrownTranslocator" type="RigidBody3D"]
+top_level = true
+collision_layer = 4
+collision_mask = 2
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_cx1qh")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_cx1qh")
+
+[node name="translocator" parent="." instance=ExtResource("1_lxutm")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("SphereShape3D_cx1qh")
+
+[editable path="translocator"]

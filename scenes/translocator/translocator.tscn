@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhrhmup3slvg"]
+
+[ext_resource type="PackedScene" uid="uid://cb4mc3gtoi0qj" path="res://models/translocator/translocator.blend" id="1_altks"]
+[ext_resource type="Script" uid="uid://nctbpep5y3xi" path="res://scenes/translocator/translocator.gd" id="2_m1s13"]
+
+[node name="Translocator" instance=ExtResource("1_altks")]
+top_level = true
+script = ExtResource("2_m1s13")
