@@ -62,7 +62,9 @@ throw_translocator={
 
 [layer_names]
 
+3d_physics/layer_1="player"
 3d_physics/layer_2="environment"
+3d_physics/layer_3="guard"
 
 [rendering]
 

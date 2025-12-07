@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://b35lttxkqaonm"]
+
+[ext_resource type="PackedScene" uid="uid://bniipnxxt8ijc" path="res://models/guard/guard.blend" id="1_s4gqi"]
+[ext_resource type="Material" uid="uid://bfnjw0fneby2r" path="res://resources/materials/toon-gray.tres" id="2_4cjav"]
+[ext_resource type="Material" uid="uid://bduaqv1jwtw16" path="res://resources/materials/toon-yellow.tres" id="3_2steh"]
+[ext_resource type="Script" uid="uid://btae0m6xhtshu" path="res://scenes/guard/view_drawer.gd" id="4_2steh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ptlu"]
+radius = 0.3
+height = 1.2915039
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4cjav"]
+radius = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2steh"]
+viewport_path = NodePath("ViewDrawer/Sprite3D/SubViewport")
+
+[node name="Guard" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64575195, 0)
+shape = SubResource("CapsuleShape3D_3ptlu")
+
+[node name="guard" parent="." instance=ExtResource("1_s4gqi")]
+
+[node name="BaseModel" parent="guard/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_4cjav")
+
+[node name="Flashlight" parent="guard/Armature/Skeleton3D" index="1"]
+surface_material_override/1 = ExtResource("3_2steh")
+
+[node name="Glasses" parent="guard/Armature/Skeleton3D" index="2"]
+surface_material_override/0 = ExtResource("3_2steh")
+
+[node name="Tie" parent="guard/Armature/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("3_2steh")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_4cjav")
+
+[node name="ViewDrawer" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.1, 0)
+script = ExtResource("4_2steh")
+arc = 0.25
+ray_count = 36
+
+[node name="Sprite3D" type="Sprite3D" parent="ViewDrawer"]
+pixel_size = 0.02
+axis = 1
+texture = SubResource("ViewportTexture_2steh")
+
+[node name="SubViewport" type="SubViewport" parent="ViewDrawer/Sprite3D"]
+transparent_bg = true
+size = Vector2i(500, 500)
+
+[node name="Polygon2D" type="Polygon2D" parent="ViewDrawer/Sprite3D/SubViewport"]
+polygon = PackedVector2Array(0, 0, 176.7767, -176.7767, 184.31934, -168.89754, 191.51111, -160.69688, 198.33833, -152.19035, 204.78802, -143.39412, 210.84785, -134.3249, 216.50633, -125, 221.75269, -115.43715, 226.57695, -105.65457, 230.96988, -95.67087, 234.92314, -85.505035, 238.42923, -75.176445, 241.48145, -64.704765, 244.074, -54.10991, 246.20195, -43.412045, 247.86122, -32.63155, 249.04869, -21.788935, 249.76205, -10.904847, 250, 0, 249.76205, 10.904847, 249.04869, 21.788935, 247.86122, 32.63155, 246.20195, 43.412045, 244.074, 54.10991, 241.48145, 64.704765, 238.42923, 75.176445, 234.92314, 85.505035, 230.96988, 95.67087, 226.57695, 105.65457, 221.75269, 115.43715, 216.50633, 125, 210.84785, 134.3249, 204.78802, 143.39412, 198.33833, 152.19035, 191.51111, 160.69688, 184.31934, 168.89754, 176.7767, 176.7767)
+uv = PackedVector2Array(0, 0, 84.68448, -235.2202, 124.35167, -216.87936, 160.2189, -191.9112, 191.1902, -161.07858, 216.3191, -125.323746, 234.83775, -85.73929, 246.18027, -43.534813, 250, 0, 246.18027, 43.534813, 234.83775, 85.73929, 216.3191, 125.323746, 191.1902, 161.07858, 160.2189, 191.9112, 124.35167, 216.87936, 84.68448, 235.2202)
+
+[node name="Camera2D" type="Camera2D" parent="ViewDrawer/Sprite3D/SubViewport"]
+
+[editable path="guard"]
