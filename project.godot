@@ -17,10 +17,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+Tools="*res://scripts/tools.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/grid_map_layer/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [input]
 
@@ -65,6 +66,10 @@ throw_translocator={
 3d_physics/layer_1="player"
 3d_physics/layer_2="environment"
 3d_physics/layer_3="guard"
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 

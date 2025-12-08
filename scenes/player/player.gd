@@ -13,7 +13,7 @@ const ROTATION_SPEED:float = 10
 ## Velocity on just the gameplay plane.
 var flat_velocity:Vector2:
 	get:
-		return Vector2(velocity.x, velocity.z)
+		return Tools.flatten(velocity)
 	set(new):
 		velocity.x = new.x
 		velocity.z = new.y

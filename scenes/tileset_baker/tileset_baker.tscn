@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7j6n0awcdv1o"]
+
+[ext_resource type="MeshLibrary" uid="uid://dqfwptoegcljq" path="res://resources/meshlibrary/tileset.tres" id="1_2tuic"]
+[ext_resource type="Script" uid="uid://d2l82c6jisvlk" path="res://addons/grid_map_layer/scripts/grid_map_layer_baker.gd" id="2_u032y"]
+[ext_resource type="TileSet" uid="uid://doj7ujv1pg5sl" path="res://resources/tileset.tres" id="3_oqq6w"]
+
+[node name="TilesetBaker" type="Node3D"]
+
+[node name="GridMapLayerBaker" type="GridMap" parent="."]
+mesh_library = ExtResource("1_2tuic")
+cell_size = Vector3(1, 2, 1)
+data = {
+"cells": PackedInt32Array(3, 3, 0, 0, 3, 1, 2, 3, 655361, 3, 2, 1048577, 3, 0, 1441793, 1, 3, 655362, 3, 1, 1048578, 4, 0, 1048579, 7, 0, 3, 7, 3, 1441795, 4, 3, 655363, 7, 4, 1048580, 4, 4, 1441796, 8, 0, 655364, 8, 3, 4, 9, 2, 5, 10, 2, 1441797, 10, 3, 655365, 9, 3, 1048581, 0, 2, 1048582, 0, 0, 6, 2, 0, 1441798, 2, 2, 655366, 1, 2, 655367, 0, 1, 1048583, 1, 0, 7, 2, 1, 1441799, 5, 4, 1441800, 6, 4, 1048584, 8, 2, 8, 8, 1, 655368, 4, 1, 655369, 7, 2, 9, 5, 3, 1441801, 6, 0, 1048585, 8, 4, 1048586, 6, 3, 1048587, 4, 2, 11, 5, 0, 1441803, 7, 1, 655371, 9, 1, 655372, 9, 0, 1048588, 5, 1, 1048589, 6, 1, 13, 6, 2, 1441805, 5, 2, 655373, 1, 1, 655375, 0, 4, 655374)
+}
+script = ExtResource("2_u032y")
+tile_set = ExtResource("3_oqq6w")
+metadata/_custom_type_script = "uid://d2l82c6jisvlk"
+metadata/_editor_floor_ = Vector3(0, 0, 0)
