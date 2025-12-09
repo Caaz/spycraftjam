@@ -28,9 +28,6 @@ var translocator:Translocator
 var thrown_translocator:ThrownTranslocator
 
 func _physics_process(delta: float) -> void:
-	# Add gravity when we're in the air
-	if not is_on_floor():
-		velocity += gravity * delta
 	
 	# Handle movement input, slow down when nothing is pressed.
 	var input_dir := Input.get_vector("move_west", "move_east", "move_south", "move_north")

@@ -17,9 +17,43 @@ var flat_velocity:Vector2:
 		velocity.x = new.x
 		velocity.z = new.y
 
-## Current speed of the player in the gameplay plane.
+## Current speed of the guard in the gameplay plane.
 var speed:float:
 	get:
 		return flat_velocity.length()
 
 @onready var gravity:Vector3 = get_gravity()
+@onready var detection_area:DetectionArea = find_child("DetectionArea")
+@onready var navigation_agent:NavigationAgent3D = find_child("NavigationAgent3D")
+func _ready() -> void:
+	navigation_agent.path_desired_distance = 0.5
+	navigation_agent.target_desired_distance = 0.5
+	detection_area.spotted.connect(func(body:Node3D) -> void:
+		navigation_agent.target_position = body.global_position
+	)
+
+func _physics_process(delta:float) -> void:
+	if navigation_agent.is_navigation_finished():
+		return
+
+	var current_agent_position: Vector3 = global_position
+	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
+	var input_dir:Vector2 = Tools.flatten(current_agent_position.direction_to(next_path_position)) * Vector2(1,-1)
+	if not input_dir.is_zero_approx():
+		_handle_movement(input_dir, delta)
+	else:
+		flat_velocity = flat_velocity.move_toward(Vector2.ZERO, delta * MOVEMENT_DECELLERATION)
+	
+	# Don't allow the player to speed up infinitely.
+	if speed > TOP_SPEED:
+		flat_velocity = flat_velocity.normalized() * TOP_SPEED
+		
+	move_and_slide()
+
+func _handle_movement(input:Vector2, delta:float) -> void:
+	var angle = input.angle() + PI/2
+	var flat_basis:Vector2 = Vector2(basis.z.x, basis.z.z)
+	var dot:float = input.dot(flat_basis * Vector2(1,-1))
+	rotation.y = rotate_toward(rotation.y, angle, ROTATION_SPEED * delta * max(.4, 1.0-dot))
+	velocity += basis.z * input.length() * MOVEMENT_ACCELLERATION * delta * dot
+	flat_velocity = flat_velocity.move_toward(flat_basis * speed, delta * MOVEMENT_DECELLERATION)

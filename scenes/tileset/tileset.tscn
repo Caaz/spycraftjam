@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://fg7sgt6htso8"]
+[gd_scene load_steps=17 format=3 uid="uid://fg7sgt6htso8"]
 
 [ext_resource type="PackedScene" uid="uid://2tmaj5dj4fbh" path="res://models/tileset/tileset.blend" id="1_cwr67"]
 
@@ -47,9 +47,6 @@ data = PackedVector3Array(-0.16669999, -1, 0.1678, -0.5, -1, 0.5011, -0.5, -1, 0
 [sub_resource type="NavigationMesh" id="NavigationMesh_o7neq"]
 vertices = PackedVector3Array(-0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, -0.5)
 polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(0, 3, 1)]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ksioe"]
-data = PackedVector3Array(-0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5)
 
 [node name="tileset" instance=ExtResource("1_cwr67")]
 
@@ -125,8 +122,3 @@ shape = SubResource("ConcavePolygonShape3D_mx4b7")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Floor" index="0"]
 navigation_mesh = SubResource("NavigationMesh_o7neq")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor" index="1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" index="0"]
-shape = SubResource("ConcavePolygonShape3D_ksioe")
