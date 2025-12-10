@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c6yjcdmqmun2l"]
+
+[ext_resource type="Shader" uid="uid://dob1qj0efnhf0" path="res://shaders/wall.gdshader" id="1_sl6xa"]
+
+[sub_resource type="Curve" id="Curve_sl6xa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46466807, 0), 0.0, 0.0, 0, 0, Vector2(0.9785867, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gtn7"]
+curve = SubResource("Curve_sl6xa")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_sl6xa")
+shader_parameter/height_curve = SubResource("CurveTexture_5gtn7")
+shader_parameter/color_top = Color(0, 0, 0, 1)
+shader_parameter/color_bottom = Color(0.54, 0.51408005, 0.44280002, 1)

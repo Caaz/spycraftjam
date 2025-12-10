@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://du0kwvig2gcoj"]
+
+[ext_resource type="Shader" uid="uid://c8kicc8nls2i0" path="res://shaders/cel.gdshader" id="2_5ycaa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("2_5ycaa")
+shader_parameter/albedo = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/light_sharpness = 0.4470000212325
+shader_parameter/light_steps = 2
