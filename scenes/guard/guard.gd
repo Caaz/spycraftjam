@@ -27,18 +27,13 @@ var speed:float:
 @onready var navigation_agent:NavigationAgent3D = find_child("NavigationAgent3D")
 func _ready() -> void:
 	navigation_agent.path_desired_distance = 0.5
-	navigation_agent.target_desired_distance = 0.5
+	navigation_agent.target_desired_distance = 0.2
 	detection_area.spotted.connect(func(body:Node3D) -> void:
 		navigation_agent.target_position = body.global_position
 	)
 
 func _physics_process(delta:float) -> void:
-	if navigation_agent.is_navigation_finished():
-		return
-
-	var current_agent_position: Vector3 = global_position
-	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
-	var input_dir:Vector2 = Tools.flatten(current_agent_position.direction_to(next_path_position)) * Vector2(1,-1)
+	var input_dir:Vector2 = _get_target_direction()
 	if not input_dir.is_zero_approx():
 		_handle_movement(input_dir, delta)
 	else:
@@ -49,6 +44,14 @@ func _physics_process(delta:float) -> void:
 		flat_velocity = flat_velocity.normalized() * TOP_SPEED
 		
 	move_and_slide()
+
+func _get_target_direction() -> Vector2:
+	if navigation_agent.is_navigation_finished():
+		return Vector2.ZERO
+	
+	var current_agent_position: Vector3 = global_position
+	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
+	return Tools.flatten(current_agent_position.direction_to(next_path_position)) * Vector2(1,-1)
 
 func _handle_movement(input:Vector2, delta:float) -> void:
 	var angle = input.angle() + PI/2

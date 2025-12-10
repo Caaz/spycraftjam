@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dokllln73agac"]
+
+[ext_resource type="PackedScene" uid="uid://d1lc34dthhm3b" path="res://models/door/door.blend" id="1_bu3y2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odsy8"]
+size = Vector3(1.1728516, 2.1558228, 0.33129883)
+
+[node name="Door" type="Node3D"]
+
+[node name="door" parent="." instance=ExtResource("1_bu3y2")]
+
+[node name="Skeleton3D" parent="door/Armature" index="0"]
+bones/1/position = Vector3(-0.07071002, -2.0096994e-15, 3.2684969e-15)
+bones/2/position = Vector3(0.07071002, 2.0096994e-15, -3.2684969e-15)
+
+[node name="ModifierBoneTarget3D" type="ModifierBoneTarget3D" parent="door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, -7.1054265e-15, 2.3841854e-07, -7.1054274e-15, 0.99999994, 5.9604645e-08, -2.3841855e-07, -5.9604645e-08, 0.99999994, -0.07071002, -2.0096994e-15, 3.2684969e-15)
+bone_name = "Door"
+bone = 1
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D/AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40641898, 1.0745544, -0.0037841797)
+shape = SubResource("BoxShape3D_odsy8")
+
+[node name="ModifierBoneTarget3D2" type="ModifierBoneTarget3D" parent="door/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, -7.1054265e-15, 2.3841854e-07, -7.1054274e-15, 0.99999994, 5.9604645e-08, -2.3841855e-07, -5.9604645e-08, 0.99999994, 0.07071002, 2.0096994e-15, -3.2684969e-15)
+bone_name = "Door.002"
+bone = 2
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D2/AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 1.4210855e-14, 0, 0.99999994, 0.41445827, 1.0745543, -0.0037839839)
+shape = SubResource("BoxShape3D_odsy8")
+
+[editable path="door"]
