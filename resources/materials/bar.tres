@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cik2ston85nt6"]
+
+[ext_resource type="Shader" uid="uid://cr1npp3iwcfg4" path="res://shaders/bar.gdshader" id="1_q5ypn"]
+
+[resource]
+shader = ExtResource("1_q5ypn")
+shader_parameter/fill = 0.57999998703584
+shader_parameter/fill_color = Color(0.6584383, 0, 0.28325406, 1)
+shader_parameter/unfill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_reverse = false

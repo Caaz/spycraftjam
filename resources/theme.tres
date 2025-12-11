@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://7xaqt4ea04t8"]
+
+[ext_resource type="FontFile" uid="uid://dgiprdmde6ha3" path="res://fonts/The Missing Link.ttf" id="1_7ct1h"]
+[ext_resource type="FontFile" uid="uid://pmtds187xnsq" path="res://fonts/Corporation Games Straight.otf" id="1_d4nwg"]
+
+[resource]
+default_font = ExtResource("1_d4nwg")
+TileLabel/base_type = &"Label"
+TileLabel/font_sizes/font_size = 32
+TileLabel/fonts/font = ExtResource("1_7ct1h")

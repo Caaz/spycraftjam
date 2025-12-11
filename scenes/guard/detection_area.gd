@@ -1,29 +1,56 @@
 class_name DetectionArea extends Area3D
-signal spotted(body:Node3D)
-var arc:float = .25
 
-var target:Node3D
-var meter:float = 0
-var detection_rate:float = .5
-var has_spotted:bool = false
+signal spotted(body:Node3D)
+
+const textures:Array[Texture2D] = [
+	preload("uid://c4cs7faca3gaq"),
+	preload("uid://b285ufkqb2exp"),
+	preload("uid://cxn487tgnbn5a"),
+]
+
+const ALERT_RATE = .5
+const ALERT_DECAY = 0.1
+const DECAY_COOLDOWN_TIME:float = 2
+
+
 @onready var parent:Node3D = get_parent()
+@onready var awareness_icon:Sprite3D = find_child("AwarenessIcon")
+
+var decay_cooldown:float = 0
+var arc:float = .25
+var target:Node3D
+var alert_level:float = 0
+var awareness_material:ShaderMaterial
 
 func _ready() -> void:
 	body_entered.connect(func(body:Node3D) -> void: target = body)
 	body_exited.connect(func(_body:Node3D) -> void: target = null)
+	awareness_material = awareness_icon.material_override.duplicate()
+	awareness_icon.material_override = awareness_material
 
 func _process(delta: float) -> void:
 	if target and _target_is_within_arc():
-		meter += delta * detection_rate
-		if not has_spotted and meter > 1:
+		alert_level = min(1, alert_level + delta * ALERT_RATE) 
+		if is_equal_approx(alert_level, 1.):
 			spotted.emit(target)
-			#has_spotted = true
 	else:
-		meter -= delta * detection_rate
-		meter = max(meter, 0)
-		if meter < .5:
-			has_spotted = false
-			
+		if is_zero_approx(decay_cooldown):
+			alert_level = max(0, alert_level - delta * ALERT_DECAY)
+		else:
+			decay_cooldown -= delta
+
+	awareness_material.set_shader_parameter("fill", alert_level)
+	var texture:Texture2D = textures[0]
+	var fill_color:Color = Color("#ffef0b")
+	if alert_level > .9:
+		texture = textures[2]
+		fill_color = Color("#f21f1f")
+	elif alert_level > .1:
+		texture = textures[1]
+		fill_color = Color("#ffef0b")
+	awareness_material.set_shader_parameter("bar_texture", texture)
+	awareness_material.set_shader_parameter("fill_color", fill_color)
+
 func _target_is_within_arc() -> bool:
 	var my_position:Vector2 = Tools.flatten(global_position)
 	var their_position:Vector2 = Tools.flatten(target.global_position)

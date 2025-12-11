@@ -47,6 +47,9 @@ data = PackedVector3Array(-0.16669999, 0, 0.1678, -0.5, 0, 0.5, -0.5, 0, 0.1678,
 [sub_resource type="NavigationMesh" id="NavigationMesh_o7neq"]
 vertices = PackedVector3Array(-0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, -0.5)
 polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(0, 3, 1)]
+geometry_collision_mask = 2
+cell_size = 1.0
+cell_height = 2.0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o7neq"]
 data = PackedVector3Array(-0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5)

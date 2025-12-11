@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://5xq84ddg5ivb"]
+
+[ext_resource type="Shader" uid="uid://cr1npp3iwcfg4" path="res://shaders/bar.gdshader" id="1_5opd2"]
+[ext_resource type="Script" uid="uid://coug3158vpoxs" path="res://scenes/alert_bar/alert_bar.gd" id="1_l835s"]
+[ext_resource type="Texture2D" uid="uid://cjj8c57ivrupv" path="res://textures/bar/bar.svg" id="2_l835s"]
+[ext_resource type="Texture2D" uid="uid://cxn487tgnbn5a" path="res://textures/eye/alert.svg" id="3_ag2mo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cfdx"]
+shader = ExtResource("1_5opd2")
+shader_parameter/fill = 0.0
+shader_parameter/fill_color = Color(0.65882355, 0.29411766, 0.22352941, 1)
+shader_parameter/unfill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_reverse = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6bsl"]
+shader = ExtResource("1_5opd2")
+shader_parameter/fill = 0.0
+shader_parameter/fill_color = Color(0.65882355, 0.29411766, 0.22352941, 1)
+shader_parameter/unfill_color = Color(1, 1, 1, 1)
+shader_parameter/fill_reverse = true
+
+[node name="AlertBar" type="Control"]
+custom_minimum_size = Vector2(821, 100)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_l835s")
+
+[node name="Bar" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_7cfdx")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -364.5
+offset_right = 364.5
+offset_bottom = 96.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_l835s")
+stretch_mode = 2
+
+[node name="Control" type="Control" parent="Bar"]
+layout_mode = 1
+anchors_preset = 0
+offset_bottom = 97.36
+
+[node name="Eye" type="TextureRect" parent="Bar/Control"]
+material = SubResource("ShaderMaterial_e6bsl")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -72.0
+offset_right = 120.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.6981317
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(120, 72)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("3_ag2mo")
+stretch_mode = 2

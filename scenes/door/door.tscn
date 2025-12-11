@@ -1,11 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://dokllln73agac"]
+[gd_scene load_steps=11 format=3 uid="uid://dokllln73agac"]
 
 [ext_resource type="PackedScene" uid="uid://d1lc34dthhm3b" path="res://models/door/door.blend" id="1_bu3y2"]
+[ext_resource type="Script" uid="uid://bewnitqcdcaux" path="res://scenes/door/door.gd" id="1_odsy8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_odsy8"]
 size = Vector3(1.1728516, 2.1558228, 0.33129883)
 
-[node name="Door" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_u3mo4"]
+size = Vector3(1.9882813, 2.2163696, 0.70373535)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_odsy8"]
+animation = &"open"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_u3mo4"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_bsixq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_iwle0"]
+nodes/output/position = Vector2(1140, 120)
+nodes/Open/node = SubResource("AnimationNodeAnimation_odsy8")
+nodes/Open/position = Vector2(317, 165)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_u3mo4")
+nodes/TimeScale/position = Vector2(540, 180)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_bsixq")
+nodes/TimeSeek/position = Vector2(800, 180)
+node_connections = [&"output", 0, &"TimeSeek", &"TimeScale", 0, &"Open", &"TimeSeek", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ht72"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gddbs"]
+states/position/node = SubResource("AnimationNodeBlendTree_iwle0")
+states/position/position = Vector2(538, 80)
+transitions = ["Start", "position", SubResource("AnimationNodeStateMachineTransition_5ht72")]
+
+[node name="Door" type="Area3D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_odsy8")
 
 [node name="door" parent="." instance=ExtResource("1_bu3y2")]
 
@@ -15,6 +47,9 @@ bone_name = "Door"
 bone = 1
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D"]
+transform = Transform3D(1, 1.6940659e-21, 2.842171e-14, 1.6940659e-21, 0.9999998, 1.0658141e-14, 1.4210855e-14, -1.0658141e-14, 0.9999998, 1.6940657e-21, 8.4703295e-22, -7.1054274e-15)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D/AnimatableBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40641898, 1.0745544, -0.0037841797)
@@ -26,9 +61,29 @@ bone_name = "Door.002"
 bone = 2
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D2"]
+transform = Transform3D(1, 0, 0, 8.4703295e-22, 0.9999998, -7.1054274e-15, 5.684342e-14, 7.1054274e-15, 0.9999998, -3.3881314e-21, -8.47033e-22, 1.4210855e-14)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D2/AnimatableBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 1.4210855e-14, 0, 0.99999994, 0.41445827, 1.0745543, -0.0037839839)
 shape = SubResource("BoxShape3D_odsy8")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18301249, 0)
+radius = 2.02
+vertices = PackedVector3Array(1.270691, 0, -0.363842, -1.138866, 0, -1.1042817, -1.0269079, 0, 1.4069071, 1.4892939, 0, 0.29714227)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009765625, 1.1009216, 0.0032348633)
+shape = SubResource("BoxShape3D_u3mo4")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../door")
+callback_mode_process = 0
+tree_root = SubResource("AnimationNodeStateMachine_gddbs")
+anim_player = NodePath("../door/AnimationPlayer")
+parameters/position/TimeScale/scale = 0.0
+parameters/position/TimeSeek/seek_request = -1.0
 
 [editable path="door"]

@@ -24,6 +24,7 @@ var speed:float:
 		return flat_velocity.length()
 
 @onready var gravity:Vector3 = get_gravity()
+@onready var interaction_area:Area3D = find_child("InteractionArea")
 var translocator:Translocator
 var thrown_translocator:ThrownTranslocator
 
@@ -48,6 +49,9 @@ func _physics_process(delta: float) -> void:
 			_place_translocator(global_position)
 		if Input.is_action_just_pressed("throw_translocator"):
 			_throw_translocator()
+	
+	if Input.is_action_just_pressed("interact"):
+		_interact()
 	# Actually move!
 	move_and_slide()
 
@@ -79,3 +83,11 @@ func _translocate() -> void:
 	#var teleport_node:Node3D = translocator if translocator else thrown_translocator
 	global_position = translocator.global_position
 	translocator.queue_free()
+
+func _interact() -> void:
+	var areas:Array[Area3D] = interaction_area.get_overlapping_areas()
+	for area:Area3D in areas:
+		var door:Door = area as Door
+		if not door:
+			return
+		door.interact()

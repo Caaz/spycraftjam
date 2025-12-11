@@ -26,10 +26,11 @@ var speed:float:
 @onready var detection_area:DetectionArea = find_child("DetectionArea")
 @onready var navigation_agent:NavigationAgent3D = find_child("NavigationAgent3D")
 func _ready() -> void:
-	navigation_agent.path_desired_distance = 0.5
-	navigation_agent.target_desired_distance = 0.2
+	navigation_agent.path_desired_distance = 0.6
+	navigation_agent.target_desired_distance = 0.5
 	detection_area.spotted.connect(func(body:Node3D) -> void:
 		navigation_agent.target_position = body.global_position
+		Game.increase_alert()
 	)
 
 func _physics_process(delta:float) -> void:
@@ -51,6 +52,7 @@ func _get_target_direction() -> Vector2:
 	
 	var current_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
+	#print("Smoving? %s %s" % [current_agent_position, next_path_position])
 	return Tools.flatten(current_agent_position.direction_to(next_path_position)) * Vector2(1,-1)
 
 func _handle_movement(input:Vector2, delta:float) -> void:

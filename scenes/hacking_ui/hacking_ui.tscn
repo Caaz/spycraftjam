@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://4514u05j1ne2"]
+
+[ext_resource type="Script" uid="uid://dd6ejo22l2sko" path="res://scenes/hacking_ui/hacking_ui.gd" id="1_jgkun"]
+[ext_resource type="Shader" uid="uid://dedre3fh3c87a" path="res://shaders/path_shader.gdshader" id="2_utogc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wuaab"]
+shader = ExtResource("2_utogc")
+shader_parameter/color_a = Color(0.36912027, 0.69646955, 0.57811457, 1)
+shader_parameter/color_b = Color(0.32909012, 0.545449, 0.7399169, 1)
+shader_parameter/speed = -0.2
+
+[sub_resource type="Gradient" id="Gradient_wuaab"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[node name="HackingUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jgkun")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="CenterContainer"]
+material = SubResource("ShaderMaterial_wuaab")
+points = PackedVector2Array(611, 541, 744, 414, 1028, 625, 1288, 323, 1473, 519, 1397, 701, 1001, 739, 1729, 484, 1649, 344, 1742, 335, 1741, 255, 1670, 254)
+width = 48.0
+gradient = SubResource("Gradient_wuaab")
+joint_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "New"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_type_variation = &"TileLabel"
+text = "0"
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="SolutionTotal" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_type_variation = &"TileLabel"
+text = "0"
