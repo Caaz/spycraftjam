@@ -29,6 +29,7 @@ func _ready() -> void:
 	awareness_icon.material_override = awareness_material
 
 func _process(delta: float) -> void:
+	# TODO: Do a sight check here.
 	if target and _target_is_within_arc():
 		alert_level = min(1, alert_level + delta * ALERT_RATE) 
 		if is_equal_approx(alert_level, 1.):

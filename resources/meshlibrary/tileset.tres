@@ -1,6 +1,6 @@
 [gd_resource type="MeshLibrary" load_steps=83 format=4 uid="uid://dqfwptoegcljq"]
 
-[ext_resource type="Material" uid="uid://du0kwvig2gcoj" path="res://resources/materials/gray-flat.tres" id="2_bvt6u"]
+[ext_resource type="Material" uid="uid://du0kwvig2gcoj" path="res://resources/materials/flat-gray.tres" id="2_bvt6u"]
 [ext_resource type="Material" uid="uid://c6yjcdmqmun2l" path="res://resources/materials/wall.tres" id="2_ldyen"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4vwvg"]

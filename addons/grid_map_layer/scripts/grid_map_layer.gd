@@ -23,3 +23,6 @@ func _get_configuration_warnings():
 		return ["Need a tile set defined"]
 	if not tile_set.has_custom_data_layer_by_name(data_layer_name):
 		return ["Tile Set needss a custom data layer named {0}".format([data_layer_name])]
+
+func _ready() -> void:
+	hide()

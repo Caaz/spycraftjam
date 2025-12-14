@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d1lc34dthhm3b"
-path="res://.godot/imported/door.blend-5d88291e3ba5cb5680ea1ab14ba3bae4.scn"
+uid="uid://cr1g5jbnsll2l"
+path="res://.godot/imported/props.blend-770a39ba7217d382767bc98457c076f7.scn"
 
 [deps]
 
-source_file="res://models/door/door.blend"
-dest_files=["res://.godot/imported/door.blend-5d88291e3ba5cb5680ea1ab14ba3bae4.scn"]
+source_file="res://models/props/props.blend"
+dest_files=["res://.godot/imported/props.blend-770a39ba7217d382767bc98457c076f7.scn"]
 
 [params]
 
@@ -39,15 +39,15 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"gray": {
+"Gray": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://resources/materials/flat-gray.tres",
 "use_external/path": "uid://du0kwvig2gcoj"
 },
-"yellow": {
+"Yellow": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://resources/materials/flat-yellow.tres",
-"use_external/path": "uid://dn05rjow2axu8"
+"use_external/fallback_path": "res://resources/materials/flat-light-gray.tres",
+"use_external/path": "uid://dbnueos6cag1s"
 }
 }
 }

@@ -3,9 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://d1lc34dthhm3b" path="res://models/door/door.blend" id="1_bu3y2"]
 [ext_resource type="Script" uid="uid://bewnitqcdcaux" path="res://scenes/door/door.gd" id="1_odsy8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_odsy8"]
-size = Vector3(1.1728516, 2.1558228, 0.33129883)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3mo4"]
 size = Vector3(1.9882813, 2.2163696, 0.70373535)
 
@@ -34,6 +31,9 @@ states/position/node = SubResource("AnimationNodeBlendTree_iwle0")
 states/position/position = Vector2(538, 80)
 transitions = ["Start", "position", SubResource("AnimationNodeStateMachineTransition_5ht72")]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_odsy8"]
+size = Vector3(2.0017395, 2.123169, 0.6782532)
+
 [node name="Door" type="Area3D"]
 collision_layer = 8
 collision_mask = 0
@@ -41,38 +41,9 @@ script = ExtResource("1_odsy8")
 
 [node name="door" parent="." instance=ExtResource("1_bu3y2")]
 
-[node name="ModifierBoneTarget3D" type="ModifierBoneTarget3D" parent="door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -7.1054265e-15, 2.3841854e-07, -7.1054274e-15, 0.99999994, 5.9604645e-08, -2.3841855e-07, -5.9604645e-08, 0.99999994, 0, 0, 0)
-bone_name = "Door"
-bone = 1
-
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D"]
-transform = Transform3D(1, 1.6940659e-21, 2.842171e-14, 1.6940659e-21, 0.9999998, 1.0658141e-14, 1.4210855e-14, -1.0658141e-14, 0.9999998, 1.6940657e-21, 8.4703295e-22, -7.1054274e-15)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D/AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40641898, 1.0745544, -0.0037841797)
-shape = SubResource("BoxShape3D_odsy8")
-
-[node name="ModifierBoneTarget3D2" type="ModifierBoneTarget3D" parent="door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, -7.1054265e-15, 2.3841854e-07, -7.1054274e-15, 0.99999994, 5.9604645e-08, -2.3841855e-07, -5.9604645e-08, 0.99999994, 0, 0, 0)
-bone_name = "Door.002"
-bone = 2
-
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D2"]
-transform = Transform3D(1, 0, 0, 8.4703295e-22, 0.9999998, -7.1054274e-15, 5.684342e-14, 7.1054274e-15, 0.9999998, -3.3881314e-21, -8.47033e-22, 1.4210855e-14)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="door/Armature/Skeleton3D/ModifierBoneTarget3D2/AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 1.4210855e-14, 0, 0.99999994, 0.41445827, 1.0745543, -0.0037839839)
-shape = SubResource("BoxShape3D_odsy8")
-
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18301249, 0)
-radius = 2.02
-vertices = PackedVector3Array(1.270691, 0, -0.363842, -1.138866, 0, -1.1042817, -1.0269079, 0, 1.4069071, 1.4892939, 0, 0.29714227)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.033265114)
+vertices = PackedVector3Array(0.997921, 0, -0.363842, -1.0191131, 0, -0.359154, -1.0269079, 0, 0.29586875, 0.9903246, 0, 0.29714227)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009765625, 1.1009216, 0.0032348633)
@@ -85,5 +56,13 @@ tree_root = SubResource("AnimationNodeStateMachine_gddbs")
 anim_player = NodePath("../door/AnimationPlayer")
 parameters/position/TimeScale/scale = 0.0
 parameters/position/TimeSeek/seek_request = -1.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009017944, 1.0512211, -0.0021514893)
+shape = SubResource("BoxShape3D_odsy8")
 
 [editable path="door"]

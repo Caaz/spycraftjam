@@ -14,4 +14,4 @@ render_priority = 0
 shader = ExtResource("1_sl6xa")
 shader_parameter/height_curve = SubResource("CurveTexture_5gtn7")
 shader_parameter/color_top = Color(0, 0, 0, 1)
-shader_parameter/color_bottom = Color(0.54, 0.51408005, 0.44280002, 1)
+shader_parameter/color_bottom = Color(0.25, 0.25, 0.25, 1)

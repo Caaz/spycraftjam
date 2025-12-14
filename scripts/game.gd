@@ -7,7 +7,7 @@ const ALERT_DECAY = 0.05
 const DECAY_COOLDOWN_TIME:float = 2
 
 var decay_cooldown:float = 0
-
+var navigation_region:NavigationRegion3D
 var alert_level:float = 0:
 	set(new):
 		if is_equal_approx(alert_level, new):
@@ -24,3 +24,8 @@ func _process(delta: float) -> void:
 		alert_level = max(0, alert_level - delta * ALERT_DECAY)
 	else:
 		decay_cooldown -= delta
+
+func rebake_navmesh() -> void:
+	if not navigation_region or navigation_region.is_baking():
+		return
+	navigation_region.bake_navigation_mesh()
