@@ -1,4 +1,5 @@
-extends Control
+class_name HackingUI extends Control
+signal closed(hacked:bool)
 enum Path {
 	DOT,
 	END,
@@ -12,17 +13,28 @@ const path_textures:Dictionary[Path, Texture2D] = {
 	Path.CORNER: preload("uid://b3mgmnw4b1djb"),
 }
 const HACKING_TILE_SCENE:PackedScene = preload("uid://e1a423l5bcur")
-const grid_size:Vector2i = Vector2i(4,3)
-const VALUE_RANGE:int = 9
+const grid_size:Vector2i = Vector2i(7,5)
+const VALUE_RANGE:int = 3
+
 @onready var grid:GridContainer = find_child("GridContainer")
 @onready var solution_total:Label = find_child("SolutionTotal")
 @onready var line:Line2D = find_child("Line2D")
+@onready var player_total:Label = find_child("PlayerTotal")
+
+## The solution to the puzzle
+var solution:int
+var player:int
+## The player's current path
+var player_path:Array[Vector2i]
+
 func _ready() -> void:
+	@warning_ignore("integer_division")
+	player_path.append(Vector2i(0, grid_size.y/2))
 	grid.columns = grid_size.x
 	for x:int in range(grid_size.x):
 		for y:int in range(grid_size.y):
 			var tile:HackingTile = HACKING_TILE_SCENE.instantiate()
-			tile.value = randi_range(1, VALUE_RANGE)
+			tile.value = randi_range(0, VALUE_RANGE)
 			grid.add_child(tile)
 	@warning_ignore("integer_division")
 	var start:HackingTile = get_tile(0, grid_size.y/2)
@@ -34,24 +46,76 @@ func _ready() -> void:
 	end.value = 0
 	end.texture = path_textures[Path.DOT]
 	_create_solution()
-	find_child("Button").pressed.connect(_create_solution)
+	find_child("NewButton").pressed.connect(_create_solution)
+	_reveal()
+
+func _reveal() -> void:
+	var tween:Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CIRC)
+	scale = Vector2(0,1)
+	tween.tween_property(self, "scale", Vector2(1,1), .3)
+
+func _close() -> Tween:
+	var tween:Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(self, "scale", Vector2(0,1), .3)
+	return tween
+	
+func _process(_delta:float) -> void:
+	var move_position = Vector2i.ZERO
+	if Input.is_action_just_pressed("move_north"):
+		move_position.y -= 1
+	elif Input.is_action_just_pressed("move_south"):
+		move_position.y += 1
+	
+	if Input.is_action_just_pressed("move_west"):
+		move_position.x -= 1
+	elif Input.is_action_just_pressed("move_east"):
+		move_position.x += 1
+		
+	if move_position != Vector2i.ZERO:
+		var new_position = player_path.back() + move_position
+		if not _is_valid(new_position):
+			return
+		var existing_position:int = player_path.find(new_position)
+		if existing_position == -1:
+			player_path.append(new_position)
+			if new_position == get_goal():
+				closed.emit(true)
+		else:
+			while player_path.size() > existing_position + 1:
+				player_path.pop_back()
+		display_path(player_path)
+		
+func _is_valid(grid_position:Vector2i) -> bool:
+	if grid_position == get_goal():
+		return player == solution
+	return not (grid_position.x < 0 or grid_position.y < 0 or grid_position.y > grid_size.y - 1 or grid_position.x > grid_size.x - 1)
 
 func _create_solution() -> void:
-	
-	var solution:Array[Vector2i] = get_solution()
+	var _solution:Array[Vector2i] = get_solution_path()
 	var total:int = 0
-	for step:Vector2i in solution:
+	for step:Vector2i in _solution:
 		var tile:HackingTile = get_tile(step.x, step.y)
 		total += tile.value
 	solution_total.text = "%d" % total
-	display_path(solution)
+	solution = total
 
 func display_path(path:Array[Vector2i]) -> void:
 	line.clear_points()
 	await get_tree().process_frame
+	var total:int = 0
 	for step:Vector2i in path:
 		var tile:HackingTile = get_tile(step.x, step.y)
-		line.add_point(tile.global_position + tile.size/2)
+		var tile_position:Vector2 = (tile.get_screen_position()) + tile.size/2
+		line.add_point(tile_position)
+		total += tile.value
+	player_total.text = "%d" % total
+	player = total
+	line.global_position = Vector2(0,0)
+	line.show()
 	
 func get_tile(x:int, y:int) -> HackingTile:
 	return grid.get_child(x + y * grid_size.x)
@@ -64,7 +128,7 @@ func get_goal() -> Vector2i:
 	@warning_ignore("integer_division")
 	return Vector2i(grid_size.x-1, grid_size.y/2)
 
-func get_solution() -> Array[Vector2i]:
+func get_solution_path() -> Array[Vector2i]:
 	@warning_ignore("integer_division")
 	var path:Array[Vector2i] = [Vector2i(0,grid_size.y/2)]
 	var goal:Vector2i = get_goal()
@@ -74,7 +138,11 @@ func get_solution() -> Array[Vector2i]:
 		neighbors = neighbors.filter(func(item:Vector2i) -> bool:
 			return not path.has(item)
 		)
-		path.append(neighbors.pick_random())
+		if neighbors.size() == 0:
+			@warning_ignore("integer_division")
+			path = [Vector2i(0,grid_size.y/2)]
+		else:
+			path.append(neighbors.pick_random())
 		last = path.back()
 	return path
 	

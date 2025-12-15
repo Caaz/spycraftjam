@@ -6,6 +6,6 @@ extends Control
 func _ready() -> void:
 	var bar_material:ShaderMaterial = bar.material.duplicate()
 	bar.material = bar_material
-	Game.alert_changed.connect(func(value:float):
+	AlertManager.alert_changed.connect(func(value:float):
 		bar_material.set_shader_parameter('fill', value)
 	)

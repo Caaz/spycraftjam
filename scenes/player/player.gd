@@ -87,7 +87,7 @@ func _translocate() -> void:
 func _interact() -> void:
 	var areas:Array[Area3D] = interaction_area.get_overlapping_areas()
 	for area:Area3D in areas:
-		var door:Door = area as Door
-		if not door:
+		var interactable:Interactable = area as Interactable
+		if not interactable:
 			return
-		door.interact()
+		interactable.interact()

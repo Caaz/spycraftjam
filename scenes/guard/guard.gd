@@ -30,7 +30,7 @@ func _ready() -> void:
 	navigation_agent.target_desired_distance = 0.5
 	detection_area.spotted.connect(func(body:Node3D) -> void:
 		navigation_agent.target_position = body.global_position
-		Game.increase_alert()
+		AlertManager.increase_alert()
 	)
 
 func _physics_process(delta:float) -> void:

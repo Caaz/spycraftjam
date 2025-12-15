@@ -1,4 +1,4 @@
-class_name Door extends Area3D
+@tool class_name Door extends Interactable
 var tween:Tween
 
 @export var locked:bool = false
@@ -29,7 +29,7 @@ func open() -> Tween:
 	tween.tween_callback(func() -> void: opened = true )
 	body.collision_layer = 0
 	obstacle.avoidance_enabled = false
-	Game.rebake_navmesh()
+	LevelManager.rebake_navmesh()
 	return tween
 	
 func close() -> Tween:
@@ -40,7 +40,7 @@ func close() -> Tween:
 	tween.tween_callback(func() -> void: opened = false )
 	body.collision_layer = 0b10
 	obstacle.avoidance_enabled = true
-	Game.rebake_navmesh()
+	LevelManager.rebake_navmesh()
 	return tween
 
 func _set_door_position(value:float) -> void:

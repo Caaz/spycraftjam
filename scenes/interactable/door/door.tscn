@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dokllln73agac"]
 
 [ext_resource type="PackedScene" uid="uid://d1lc34dthhm3b" path="res://models/door/door.blend" id="1_bu3y2"]
-[ext_resource type="Script" uid="uid://bewnitqcdcaux" path="res://scenes/door/door.gd" id="1_odsy8"]
+[ext_resource type="Script" uid="uid://bewnitqcdcaux" path="res://scenes/interactable/door/door.gd" id="1_odsy8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3mo4"]
 size = Vector3(1.9882813, 2.2163696, 0.70373535)
@@ -35,7 +35,7 @@ transitions = ["Start", "position", SubResource("AnimationNodeStateMachineTransi
 size = Vector3(2.0017395, 2.123169, 0.6782532)
 
 [node name="Door" type="Area3D"]
-collision_layer = 8
+collision_layer = 24
 collision_mask = 0
 script = ExtResource("1_odsy8")
 

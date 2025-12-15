@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="spycraftjam"
+run/main_scene="uid://b8q7ihw1wulsu"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -18,7 +19,11 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Tools="*res://scripts/tools.gd"
-Game="*res://scripts/game.gd"
+AlertManager="*res://scripts/alert_manager.gd"
+CameraManager="*res://scripts/camera_manager.gd"
+GameManager="*res://scripts/game_manager.gd"
+HackManager="*res://scripts/hack_manager.gd"
+LevelManager="*res://scripts/level_manager.gd"
 
 [display]
 
@@ -30,6 +35,13 @@ window/stretch/aspect="keep_height"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/grid_map_layer/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+
+[global_group]
+
+phantom_camera="Main Phantom Camera (Single Use)"
+camera="Main Camera (Single Use)"
+hack_layer=""
+navigation_region="Main Navigation Region for Levels"
 
 [gui]
 
@@ -84,6 +96,11 @@ interact={
 3d_physics/layer_2="environment"
 3d_physics/layer_3="guard"
 3d_physics/layer_4="interactable"
+3d_physics/layer_5="hackable"
+
+[navigation]
+
+3d/default_cell_size=0.1
 
 [physics]
 

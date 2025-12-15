@@ -20,11 +20,11 @@ func _ready() -> void:
 func _update_display() -> void:
 	if not is_node_ready():
 		return
-	if value > 0:
-		label.text = "%d" % value
-		label.show()
-	else:
-		label.hide()
+	label.text = "%d" % value
+	#if value > 0:
+		#label.show()
+	#else:
+		#label.hide()
 	
 	if texture:
 		texture_rect.texture = texture
