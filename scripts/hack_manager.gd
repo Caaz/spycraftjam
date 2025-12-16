@@ -22,7 +22,6 @@ func initiate_hack(from:Node3D) -> bool:
 	return hacked
 
 func get_target(from_options:Array) -> Interactable:
-	GameManager.state = GameManager.State.PAUSED
 	var target_selector:TargetSelector = TARGET_SCENE.instantiate()
 	target_selector.options = from_options
 	hack_layer.add_child(target_selector)
