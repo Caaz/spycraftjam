@@ -34,5 +34,5 @@ func load_level_by_scene(packed_scene:PackedScene) -> void:
 	level.process_mode = PROCESS_MODE_INHERIT
 	CameraManager.set_target(level.player)
 	
-	await get_tree().process_frame
+	await create_tween().tween_interval(.5).finished
 	rebake_navigation()

@@ -13,9 +13,15 @@ func _ready():
 		button = Button.new()
 		button.text = option
 		button_container.add_child(button)
-		button.pressed.connect(selected.emit.bind(option))
+		button.pressed.connect(func():
+			selected.emit(option)
+			queue_free()
+		)
 	
 	button = Button.new()
 	button.text = "Cancel"
 	button_container.add_child(button)
-	button.pressed.connect(selected.emit.bind(""))
+	button.pressed.connect(func():
+		selected.emit("")
+		queue_free()
+	)
