@@ -21,7 +21,10 @@ func rebake_navigation() -> void:
 	navigation_region.bake_navigation_mesh()
 	
 func load_level(key:LevelKey) -> void:
-	var level:Level = levels[key].instantiate() as Level
+	load_level_by_scene(levels[key])
+
+func load_level_by_scene(packed_scene:PackedScene) -> void:
+	var level:Level = packed_scene.instantiate() as Level
 	for child in level_container.get_children():
 		child.queue_free()
 	# TODO: Fade to black here

@@ -46,6 +46,9 @@ func _ready() -> void:
 	)
 
 func _physics_process(delta:float) -> void:
+	if waiting:
+		return
+	
 	if walking:
 		navigation_agent.target_position = path.get_target(global_position)
 		
@@ -68,13 +71,18 @@ func _physics_process(delta:float) -> void:
 		if Vector2(basis.z.x, basis.z.z).dot(local_position) >= 0:
 			return
 		
+		print("Closing door")
 		last_door_opened.close()
 		last_door_opened = null
 		_wait_tween = create_tween()
-		_wait_tween.tween_interval(.5)
+		_wait_tween.tween_interval(1)
 
 func _get_target_direction() -> Vector2:
 	var current_agent_position: Vector3 = global_position
+	
+	if not navigation_agent.is_target_reachable():
+		if _try_open_door():
+			return Vector2.ZERO
 	
 	if navigation_agent.is_navigation_finished():
 		if not path:
@@ -85,12 +93,7 @@ func _get_target_direction() -> Vector2:
 		if not navigation_agent.target_position.is_equal_approx(new_target_position):
 			navigation_agent.target_position = path.get_target(current_agent_position)
 		
-	if not navigation_agent.is_target_reachable():
-		_try_open_door()
-		return Vector2.ZERO
 	
-	if waiting:
-		return Vector2.ZERO
 	var next_path_position:Vector3 = navigation_agent.get_next_path_position()
 	return Tools.flatten(current_agent_position.direction_to(next_path_position)) * Vector2(1,-1)
 
@@ -102,14 +105,16 @@ func _handle_movement(input:Vector2, delta:float) -> void:
 	velocity += basis.z * input.length() * MOVEMENT_ACCELLERATION * delta * dot
 	flat_velocity = flat_velocity.move_toward(flat_basis * speed, delta * MOVEMENT_DECELLERATION)
 
-func _try_open_door() -> void:
+func _try_open_door() -> bool:
 	if not door_raycast.is_colliding():
-		return
+		return false
 		
 	var door:Door = door_raycast.get_collider() as Door
 	if not door:
-		return
+		return false
+	print("Opening door")
 	door.open()
 	last_door_opened = door
 	_wait_tween = create_tween()
 	_wait_tween.tween_interval(.5)
+	return true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpyi01p72v6e3"]
+[gd_scene load_steps=10 format=3 uid="uid://bpyi01p72v6e3"]
 
 [ext_resource type="Script" uid="uid://cxj6536g3i52q" path="res://scenes/gameplay/gameplay.gd" id="1_216mg"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_td3fc"]
+[ext_resource type="PackedScene" uid="uid://cgfev3otch742" path="res://scenes/gameplay/level/levels/some-level.tscn" id="2_0w2j2"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_216mg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_2eo0c"]
 [ext_resource type="PackedScene" uid="uid://5xq84ddg5ivb" path="res://scenes/gameplay/alert_bar/alert_bar.tscn" id="13_c6mtg"]
@@ -24,6 +25,7 @@ script = ExtResource("2_216mg")
 
 [node name="Gameplay" type="Node"]
 script = ExtResource("1_216mg")
+level_scene = ExtResource("2_0w2j2")
 
 [node name="LevelContainer" type="Node" parent="."]
 
@@ -68,7 +70,7 @@ follow_offset = Vector3(-2, 5, 1)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="LevelContainer/Camera" groups=["camera"]]
-transform = Transform3D(0.70710677, 0.6644631, -0.2418448, -5.9604645e-08, 0.34202015, 0.93969274, 0.7071068, -0.66446304, 0.24184477, -14.782859, 5.939686, 9.961595)
+transform = Transform3D(0.7071067, 0.6644581, -0.24184297, 0, 0.34201762, 0.93968564, 0.7071067, -0.6644581, 0.24184297, -2.241843, 5.939686, 1.241843)
 projection = 1
 size = 10.0
 
