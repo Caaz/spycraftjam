@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d3fhfnmocvxqs"]
 
-[ext_resource type="Script" uid="uid://djxc1alwv131o" path="res://scenes/hack_options/hack_options.gd" id="1_1p6cn"]
+[ext_resource type="Script" uid="uid://djxc1alwv131o" path="res://scenes/gameplay/interactable/hackable/hack_options/hack_options.gd" id="1_1p6cn"]
 
 [node name="HackOptions" type="PanelContainer"]
 anchors_preset = 8

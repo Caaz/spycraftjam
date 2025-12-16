@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2rowday7qqdn"]
 
-[ext_resource type="Script" uid="uid://cr2ebjkfbcou8" path="res://scenes/thrown_translocator/thrown_translocator.gd" id="1_cx1qh"]
+[ext_resource type="Script" uid="uid://cr2ebjkfbcou8" path="res://scenes/gameplay/player/thrown_translocator/thrown_translocator.gd" id="1_cx1qh"]
 [ext_resource type="PackedScene" uid="uid://cb4mc3gtoi0qj" path="res://models/translocator/translocator.blend" id="1_lxutm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cx1qh"]

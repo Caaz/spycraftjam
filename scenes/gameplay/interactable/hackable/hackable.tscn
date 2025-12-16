@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bvm0f1eb87c40"]
 
-[ext_resource type="PackedScene" uid="uid://m82fkrwji88u" path="res://scenes/interactable/interactable.tscn" id="1_k8vmn"]
-[ext_resource type="Script" uid="uid://ch3xx6bup6v0c" path="res://scenes/interactable/hackable/hackable.gd" id="2_pla5o"]
-[ext_resource type="PackedScene" uid="uid://b0ihikykg1odh" path="res://scenes/prop/prop.tscn" id="3_a3a1c"]
+[ext_resource type="PackedScene" uid="uid://m82fkrwji88u" path="res://scenes/gameplay/interactable/interactable.tscn" id="1_k8vmn"]
+[ext_resource type="Script" uid="uid://ch3xx6bup6v0c" path="res://scenes/gameplay/interactable/hackable/hackable.gd" id="2_pla5o"]
+[ext_resource type="PackedScene" uid="uid://b0ihikykg1odh" path="res://scenes/gameplay/prop/prop.tscn" id="3_a3a1c"]
 [ext_resource type="Material" uid="uid://dn05rjow2axu8" path="res://resources/materials/flat-yellow.tres" id="4_ahoh4"]
 [ext_resource type="Shader" uid="uid://bxt87ejewr1dg" path="res://shaders/selection.gdshader" id="5_a3a1c"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bt8f4hpfefm4n"]
 
-[ext_resource type="Script" uid="uid://d1uykswroov21" path="res://scenes/target_selector/target_selector.gd" id="1_nt62y"]
+[ext_resource type="Script" uid="uid://d1uykswroov21" path="res://scenes/gameplay/interactable/hackable/target_selector/target_selector.gd" id="1_nt62y"]
 [ext_resource type="Material" uid="uid://cr860iijv62sh" path="res://resources/materials/target_selector.tres" id="2_nt62y"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ut0kj"]

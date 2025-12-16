@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://e1a423l5bcur"]
 
-[ext_resource type="Script" uid="uid://bdqvt2eodpp4k" path="res://scenes/hacking_ui/hacking_tile.gd" id="1_b1b16"]
+[ext_resource type="Script" uid="uid://bdqvt2eodpp4k" path="res://scenes/gameplay/interactable/hackable/hacking_ui/hacking_tile.gd" id="1_b1b16"]
 
 [node name="HackingTile" type="PanelContainer"]
 self_modulate = Color(0, 0.8260002, 0.84, 1)

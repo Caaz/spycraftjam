@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://4514u05j1ne2"]
 
-[ext_resource type="Script" uid="uid://dd6ejo22l2sko" path="res://scenes/hacking_ui/hacking_ui.gd" id="1_jgkun"]
+[ext_resource type="Script" uid="uid://dd6ejo22l2sko" path="res://scenes/gameplay/interactable/hackable/hacking_ui/hacking_ui.gd" id="1_jgkun"]
 [ext_resource type="Shader" uid="uid://dedre3fh3c87a" path="res://shaders/path_shader.gdshader" id="2_utogc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wuaab"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://bxbdadubp20yj"]
 
-[ext_resource type="Script" uid="uid://xc6d4olh234n" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://xc6d4olh234n" path="res://scenes/gameplay/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://dr1715rmdu61u" path="res://models/player/player.blend" id="2_dovo2"]
-[ext_resource type="Script" uid="uid://dct7ju4egqly" path="res://scenes/player/player_animator.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://dct7ju4egqly" path="res://scenes/gameplay/player/player_animator.gd" id="3_gmlin"]
 [ext_resource type="Material" uid="uid://bfnjw0fneby2r" path="res://resources/materials/toon-gray.tres" id="3_p47bc"]
 [ext_resource type="Material" uid="uid://x728xpsuwgtl" path="res://resources/materials/took-cyan.tres" id="4_75vfm"]
 
