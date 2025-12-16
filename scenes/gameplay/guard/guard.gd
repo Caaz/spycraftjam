@@ -61,14 +61,13 @@ func _physics_process(delta:float) -> void:
 		
 	move_and_slide()
 	if last_door_opened:
-		var flat_basis:Vector2 = Vector2(basis.z.x, basis.z.z) 
-		var local_position:Vector2 = Tools.flatten(global_position.direction_to(last_door_opened.global_position))
-		var direction:float = flat_basis.dot(local_position)
 		if global_position.distance_squared_to(last_door_opened.global_position) < 1:
 			return
-		if direction >= 0:
+		
+		var local_position:Vector2 = Tools.flatten(global_position.direction_to(last_door_opened.global_position))
+		if Vector2(basis.z.x, basis.z.z).dot(local_position) >= 0:
 			return
-		print("Closing")
+		
 		last_door_opened.close()
 		last_door_opened = null
 		_wait_tween = create_tween()
