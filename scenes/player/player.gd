@@ -23,7 +23,7 @@ var speed:float:
 	get:
 		return flat_velocity.length()
 
-@onready var gravity:Vector3 = get_gravity()
+@onready var gravity:Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity_vector") * ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var interaction_area:Area3D = find_child("InteractionArea")
 var translocator:Translocator
 var thrown_translocator:ThrownTranslocator
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _handle_movement(input:Vector2, delta:float) -> void:
-	var angle = input.angle() + PI/2
+	var angle = input.angle() + PI/4
 	var flat_basis:Vector2 = Vector2(basis.z.x, basis.z.z)
 	var dot:float = input.dot(flat_basis * Vector2(1,-1))
 	rotation.y = rotate_toward(rotation.y, angle, ROTATION_SPEED * delta * max(.4, 1.0-dot))

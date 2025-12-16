@@ -1,15 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvm0f1eb87c40"]
+[gd_scene load_steps=10 format=3 uid="uid://bvm0f1eb87c40"]
 
 [ext_resource type="PackedScene" uid="uid://m82fkrwji88u" path="res://scenes/interactable/interactable.tscn" id="1_k8vmn"]
 [ext_resource type="Script" uid="uid://ch3xx6bup6v0c" path="res://scenes/interactable/hackable/hackable.gd" id="2_pla5o"]
 [ext_resource type="PackedScene" uid="uid://b0ihikykg1odh" path="res://scenes/prop/prop.tscn" id="3_a3a1c"]
 [ext_resource type="Material" uid="uid://dn05rjow2axu8" path="res://resources/materials/flat-yellow.tres" id="4_ahoh4"]
+[ext_resource type="Shader" uid="uid://bxt87ejewr1dg" path="res://shaders/selection.gdshader" id="5_a3a1c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1mh4e"]
 radius = 0.60848516
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pla5o"]
-radius = 10.0
+radius = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahoh4"]
+render_priority = 0
+shader = ExtResource("5_a3a1c")
+shader_parameter/color = Color(0.028369227, 0.44864547, 0.40383402, 1)
+shader_parameter/height = 0.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a3a1c"]
+material = SubResource("ShaderMaterial_ahoh4")
+top_radius = 7.0
+bottom_radius = 7.0
+height = 0.7
+cap_bottom = false
 
 [node name="Hackable" instance=ExtResource("1_k8vmn")]
 collision_layer = 8
@@ -35,3 +49,7 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HackRange" index="0"]
 shape = SubResource("SphereShape3D_pla5o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+mesh = SubResource("CylinderMesh_a3a1c")

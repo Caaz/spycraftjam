@@ -1,4 +1,4 @@
-class_name HackingTile extends CenterContainer
+class_name HackingTile extends PanelContainer
 
 @onready var label:Label = find_child("Label")
 @onready var texture_rect:TextureRect = find_child("TextureRect")
@@ -16,18 +16,7 @@ var texture:Texture2D:
 func _ready() -> void:
 	_update_display()
 
-
 func _update_display() -> void:
 	if not is_node_ready():
 		return
 	label.text = "%d" % value
-	#if value > 0:
-		#label.show()
-	#else:
-		#label.hide()
-	
-	if texture:
-		texture_rect.texture = texture
-		texture_rect.show()
-	else:
-		texture_rect.hide()

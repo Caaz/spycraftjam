@@ -15,7 +15,7 @@ const DECAY_COOLDOWN_TIME:float = 2
 
 @onready var parent:Node3D = get_parent()
 @onready var awareness_icon:Sprite3D = find_child("AwarenessIcon")
-
+@onready var raycast:RayCast3D = find_child("RayCast3D")
 var decay_cooldown:float = 0
 var arc:float = .25
 var target:Node3D
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# TODO: Do a sight check here.
-	if target and _target_is_within_arc():
+	if target and _target_is_within_arc() and _can_see_target():
 		alert_level = min(1, alert_level + delta * ALERT_RATE) 
 		if is_equal_approx(alert_level, 1.):
 			spotted.emit(target)
@@ -61,3 +61,9 @@ func _target_is_within_arc() -> bool:
 	
 	var dot:float = (direction.dot(facing_direction) + 1) / 2 
 	return dot > 1.0-arc
+
+func _can_see_target() -> bool:
+	raycast.target_position = to_local(target.global_position)
+	if raycast.is_colliding():
+		return raycast.get_collider() is Player
+	return false

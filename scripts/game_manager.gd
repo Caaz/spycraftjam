@@ -11,5 +11,10 @@ var state:State = State.DEFAULT:
 		_state_updated()
 
 func _state_updated() -> void:
-	# TODO: Pause game when paused.
-	pass
+	var pausable_nodes:Array[Node] = get_tree().get_nodes_in_group(&"gameplay_pausable")
+	for node:Node in pausable_nodes:
+		match(state):
+			State.DEFAULT:
+				node.process_mode = Node.PROCESS_MODE_INHERIT 
+			State.PAUSED:
+				node.process_mode = Node.PROCESS_MODE_DISABLED 

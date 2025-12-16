@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cr860iijv62sh"]
+
+[ext_resource type="Shader" uid="uid://bxt87ejewr1dg" path="res://shaders/selection.gdshader" id="1_wr1p6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wr1p6")
+shader_parameter/color = Color(0.028369227, 0.44864547, 0.40383402, 1)
+shader_parameter/height = 0.945

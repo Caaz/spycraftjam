@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="spycraftjam"
-run/main_scene="uid://b8q7ihw1wulsu"
+run/main_scene="uid://bv0wsc488rxuv"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ CameraManager="*res://scripts/camera_manager.gd"
 GameManager="*res://scripts/game_manager.gd"
 HackManager="*res://scripts/hack_manager.gd"
 LevelManager="*res://scripts/level_manager.gd"
+SceneManager="*res://scripts/scene_manager.gd"
 
 [display]
 
@@ -42,6 +43,8 @@ phantom_camera="Main Phantom Camera (Single Use)"
 camera="Main Camera (Single Use)"
 hack_layer=""
 navigation_region="Main Navigation Region for Levels"
+gameplay_pausable=""
+main=""
 
 [gui]
 

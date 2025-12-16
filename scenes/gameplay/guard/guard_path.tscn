@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://chq6lta5metq4"]
+
+[ext_resource type="Script" uid="uid://by4ogb0pkgru8" path="res://scenes/gameplay/guard/guard_path.gd" id="1_ec66l"]
+
+[node name="GuardPath" type="Path3D"]
+top_level = true
+script = ExtResource("1_ec66l")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.90392303, 0, 0.42769516, 0, 1, 0, -0.42769516, 0, -0.90392303, -0.60418415, 0, 0.33570337)

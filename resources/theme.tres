@@ -1,20 +1,75 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://7xaqt4ea04t8"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://7xaqt4ea04t8"]
 
-[ext_resource type="FontFile" uid="uid://dgiprdmde6ha3" path="res://fonts/The Missing Link.ttf" id="1_7ct1h"]
-[ext_resource type="Texture2D" uid="uid://dkn6g1qqxboik" path="res://textures/textbox.svg" id="1_886mr"]
-[ext_resource type="FontFile" uid="uid://pmtds187xnsq" path="res://fonts/Corporation Games Straight.otf" id="1_d4nwg"]
+[ext_resource type="FontFile" uid="uid://0xnw861jwqu7" path="res://fonts/Best Tease.otf" id="1_7ct1h"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b751m"]
-texture = ExtResource("1_886mr")
-texture_margin_left = 46.0
-texture_margin_top = 71.0
-texture_margin_right = 46.0
-texture_margin_bottom = 71.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaf3v"]
+content_margin_left = 64.0
+content_margin_top = 16.0
+content_margin_right = 64.0
+content_margin_bottom = 16.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owntx"]
+content_margin_left = 64.0
+content_margin_top = 16.0
+content_margin_right = 64.0
+content_margin_bottom = 16.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_886mr"]
+bg_color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b751m"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.7737629, 0.84366727, 0.46817118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ct1h"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
 
 [resource]
-default_font = ExtResource("1_d4nwg")
+default_font = ExtResource("1_7ct1h")
+Button/font_sizes/font_size = 48
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxFlat_aaf3v")
+Button/styles/normal = SubResource("StyleBoxFlat_owntx")
+ButtonList/base_type = &"VBoxContainer"
+ButtonList/constants/separation = 32
+HackTile/base_type = &"PanelContainer"
+HackTile/styles/panel = SubResource("StyleBoxFlat_886mr")
+HackTileGoal/base_type = &"PanelContainer"
+HackTileGoal/styles/panel = SubResource("StyleBoxFlat_b751m")
 HackUI/base_type = &"PanelContainer"
-HackUI/styles/panel = SubResource("StyleBoxTexture_b751m")
+HackUI/styles/panel = SubResource("StyleBoxFlat_7ct1h")
+MarginContainer/constants/margin_bottom = 24
+MarginContainer/constants/margin_left = 24
+MarginContainer/constants/margin_right = 24
+MarginContainer/constants/margin_top = 24
 TileLabel/base_type = &"Label"
-TileLabel/font_sizes/font_size = 32
+TileLabel/font_sizes/font_size = 48
 TileLabel/fonts/font = ExtResource("1_7ct1h")

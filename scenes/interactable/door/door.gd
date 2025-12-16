@@ -29,7 +29,7 @@ func open() -> Tween:
 	tween.tween_callback(func() -> void: opened = true )
 	body.collision_layer = 0
 	obstacle.avoidance_enabled = false
-	LevelManager.rebake_navmesh()
+	LevelManager.rebake_navigation()
 	return tween
 	
 func close() -> Tween:
@@ -40,8 +40,11 @@ func close() -> Tween:
 	tween.tween_callback(func() -> void: opened = false )
 	body.collision_layer = 0b10
 	obstacle.avoidance_enabled = true
-	LevelManager.rebake_navmesh()
+	LevelManager.rebake_navigation()
 	return tween
 
 func _set_door_position(value:float) -> void:
 	animation_tree.set("parameters/position/TimeSeek/seek_request", value)
+
+func hack_options() -> Array[StringName]:
+	return [&"open", &"close"]
