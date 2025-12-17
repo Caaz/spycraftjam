@@ -49,7 +49,7 @@ func _physics_process(delta:float) -> void:
 	if waiting:
 		return
 	
-	if walking:
+	if walking and path:
 		navigation_agent.target_position = path.get_target(global_position)
 		
 	var input_dir:Vector2 = _get_target_direction()

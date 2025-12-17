@@ -3,17 +3,22 @@ var tween:Tween
 
 @export var locked:bool = false
 @onready var animation_tree:AnimationTree = find_child("AnimationTree")
+@export var material:Material
 var opened:bool = false:
 	set(new):
 		opened = new
+		var interact_text:String = "%s\n[f]" % ["Close" if opened else "Open"]
 		if locked:
-			$Label3D.text = "[LOCKED]\nInteract" 
+			$Label3D.text = "[LOCKED]\n%s" % interact_text 
 		else:
-			$Label3D.text = "Interact"
+			$Label3D.text = interact_text 
 
 @onready var body:StaticBody3D = find_child("StaticBody3D")
 @onready var obstacle:NavigationObstacle3D = find_child("NavigationObstacle3D")
 func _ready() -> void:
+	if material:
+		var door_mesh:MeshInstance3D = find_child("Doors") as MeshInstance3D
+		door_mesh.set_surface_override_material(0, material)
 	opened = false
 	animation_tree.set("parameters/position/TimeScale/scale", 0)
 	animation_tree.set("parameters/position/TimeSeek/seek_request", 0)

@@ -56,10 +56,11 @@ mesh = SubResource("CylinderMesh_a3a1c")
 
 [node name="Label3D" type="Label3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-visible = false
 pixel_size = 0.002
 billboard = 1
 fixed_size = true
+render_priority = 1
 modulate = Color(0.37254903, 1, 1, 1)
-text = "Hack"
+text = "Hack
+[f]"
 outline_size = 24
