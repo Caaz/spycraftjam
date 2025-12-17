@@ -1,6 +1,7 @@
 extends Node
 
 signal alert_changed(alert)
+signal alert_max()
 ## Rate at which the alert level raises in seconds
 const ALERT_RATE = .05
 ## Rate at which the alert level deccays in seconds
@@ -19,6 +20,8 @@ var alert_level:float = 0:
 			return
 		alert_level = new_level
 		alert_changed.emit(alert_level)
+		if is_equal_approx(alert_level, 1):
+			alert_max.emit()
 
 func _process(delta: float) -> void:
 	if is_zero_approx(_cooldown):

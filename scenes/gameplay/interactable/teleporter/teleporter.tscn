@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://b61d2onom7ydm"]
+
+[ext_resource type="PackedScene" uid="uid://m82fkrwji88u" path="res://scenes/gameplay/interactable/interactable.tscn" id="1_824lx"]
+[ext_resource type="PackedScene" uid="uid://b0ihikykg1odh" path="res://scenes/gameplay/prop/prop.tscn" id="2_vxpby"]
+[ext_resource type="Script" uid="uid://bi6r8lto7jpf4" path="res://scenes/gameplay/interactable/teleporter/teleporter.gd" id="2_ywldk"]
+[ext_resource type="Material" uid="uid://dn05rjow2axu8" path="res://resources/materials/flat-yellow.tres" id="3_ywldk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_liw74"]
+
+[node name="Teleporter" instance=ExtResource("1_824lx")]
+script = ExtResource("2_ywldk")
+
+[node name="TeleportPad" parent="." index="0" instance=ExtResource("2_vxpby")]
+mesh_name = "TeleportPad"
+id = 13
+material_override = ExtResource("3_ywldk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1690063, 0)
+shape = SubResource("SphereShape3D_liw74")

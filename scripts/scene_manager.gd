@@ -4,10 +4,14 @@ enum Scene {
 	MAIN_MENU,
 	GAMEPLAY,
 	CREDITS,
+	GAME_OVER,
+	GAME_WIN,
 }
 const scenes:Dictionary[Scene, PackedScene] = {
 	Scene.MAIN_MENU: preload("uid://dedxorxw312bn"),
-	Scene.GAMEPLAY: preload("uid://bpyi01p72v6e3")
+	Scene.GAMEPLAY: preload("uid://bpyi01p72v6e3"),
+	Scene.GAME_OVER: preload("uid://c82dxuanc0lh4"),
+	Scene.GAME_WIN: preload("uid://bsyj7dj4eswfr"),
 }
 
 var main:Main:
