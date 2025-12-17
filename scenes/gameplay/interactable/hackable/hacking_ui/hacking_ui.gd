@@ -53,7 +53,15 @@ func _ready() -> void:
 	
 	_create_solution()
 	display_path(player_path)
-	#find_child("NewButton").pressed.connect(_create_solution)
+	find_child("Undo").pressed.connect(func() -> void:
+		if player_path.size() > 1:
+			player_path.pop_back()
+			display_path(player_path)
+	)
+	find_child("Reset").pressed.connect(func() -> void:
+		player_path = [_start_position]
+		display_path(player_path)
+	)
 	_reveal()
 
 func _reveal() -> void:
