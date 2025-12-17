@@ -65,6 +65,7 @@ follow_mode = 5
 tween_resource = SubResource("Resource_p0jio")
 tween_on_load = false
 follow_offset = Vector3(-2, 5, 1)
+follow_damping = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="LevelContainer/Camera" groups=["camera"]]
@@ -108,3 +109,4 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 
 [node name="HackLayer" type="CanvasLayer" parent="." groups=["hack_layer"]]
+follow_viewport_enabled = true

@@ -45,6 +45,7 @@ hack_layer=""
 navigation_region="Main Navigation Region for Levels"
 gameplay_pausable=""
 main=""
+player=""
 
 [gui]
 

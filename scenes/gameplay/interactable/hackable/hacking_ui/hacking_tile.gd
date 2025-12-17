@@ -1,5 +1,5 @@
 class_name HackingTile extends PanelContainer
-
+signal selected()
 @onready var label:Label = find_child("Label")
 @onready var texture_rect:TextureRect = find_child("TextureRect")
 
@@ -20,3 +20,9 @@ func _update_display() -> void:
 	if not is_node_ready():
 		return
 	label.text = "%d" % value
+
+func _gui_input(event: InputEvent) -> void:
+	print(event)
+	if event.is_action_pressed("ui_accept") or event is InputEventMouseButton:
+		return
+	selected.emit()
