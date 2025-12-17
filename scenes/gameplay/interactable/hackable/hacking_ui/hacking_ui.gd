@@ -34,7 +34,6 @@ var _end_position:Vector2i:
 	get: return grid_size - Vector2i(1, 1)
 
 func _ready() -> void:
-	@warning_ignore("integer_division")
 	player_path.append(_start_position)
 	grid.columns = grid_size.x
 	for x:int in range(grid_size.x):
@@ -42,17 +41,15 @@ func _ready() -> void:
 			var tile:HackingTile = HACKING_TILE_SCENE.instantiate()
 			tile.value = randi_range(0, VALUE_RANGE)
 			tile.selected.connect(func() -> void:
-				_try_add_path(Vector2i(x, y))
+				_try_add_path(Vector2i(y, x))
 			)
 			grid.add_child(tile)
-	@warning_ignore("integer_division")
 
 	var start:HackingTile = get_tile(_start_position.x, _start_position.y)
 	start.value = 0
 	
-	@warning_ignore("integer_division")
-	var end:HackingTile = get_goal_tile()
-	end.value = 0
+	#var end:HackingTile = get_goal_tile()
+	#end.value = 0
 	
 	_create_solution()
 	display_path(player_path)
@@ -106,12 +103,19 @@ func _try_add_path(grid_position:Vector2i) -> void:
 	display_path(player_path)
 
 func _is_valid(grid_position:Vector2i) -> bool:
-	if grid_position == _end_position:
-		return player == solution
 	var in_grid:bool = not (grid_position.x < 0 or grid_position.y < 0 or grid_position.y > grid_size.y - 1 or grid_position.x > grid_size.x - 1)
-	if in_grid and solution != -1 and not (grid_position in player_path) and player + get_tile(grid_position.x,grid_position.y).value > solution:
+	if not in_grid:
 		return false
-	return in_grid
+		
+	var next_value:int = player + get_tile(grid_position.x,grid_position.y).value
+	if grid_position == _end_position:
+		return next_value == solution
+		
+	if solution != -1 and not (grid_position in player_path) and next_value > solution:
+		return false
+	
+	var last_position:Vector2i = player_path.back()
+	return grid_position in get_neighbors(last_position.x, last_position.y)
 
 func _create_solution() -> void:
 	var _solution:Array[Vector2i] = get_solution_path()

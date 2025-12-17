@@ -18,3 +18,15 @@ func set_scene(scene:Scene) -> Node:
 	var node:Node = scenes[scene].instantiate()
 	main.set_scene(node)
 	return node
+
+func _ready() -> void:
+	pass
+	# If you ever need to debug input nonsense, uncomment this.
+	#get_tree().node_added.connect(func(node:Node) -> void:
+		#var control:Control = node as Control
+		#if not control:
+			#return
+		#control.gui_input.connect(func(event:InputEvent) -> void:
+			#print("%s received %s" % [control, event])
+		#)
+	#)

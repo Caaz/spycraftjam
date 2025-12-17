@@ -22,7 +22,7 @@ func _update_display() -> void:
 	label.text = "%d" % value
 
 func _gui_input(event: InputEvent) -> void:
-	print(event)
-	if event.is_action_pressed("ui_accept") or event is InputEventMouseButton:
+	var mouse_event = event as InputEventMouseButton
+	if not (event.is_action_pressed("ui_accept") or (mouse_event and mouse_event.is_pressed())) :
 		return
 	selected.emit()

@@ -2,20 +2,25 @@
 var tween:Tween
 
 @export var locked:bool = false
-@export var hackable:bool = false
-
 @onready var animation_tree:AnimationTree = find_child("AnimationTree")
-@onready var opened:bool = false
+var opened:bool = false:
+	set(new):
+		opened = new
+		if locked:
+			$Label3D.text = "[LOCKED]\nInteract" 
+		else:
+			$Label3D.text = "Interact"
+
 @onready var body:StaticBody3D = find_child("StaticBody3D")
 @onready var obstacle:NavigationObstacle3D = find_child("NavigationObstacle3D")
 func _ready() -> void:
+	opened = false
 	animation_tree.set("parameters/position/TimeScale/scale", 0)
 	animation_tree.set("parameters/position/TimeSeek/seek_request", 0)
 
 func interact() -> void:
 	if tween and tween.is_running():
 		return
-	
 	if opened:
 		close()
 	else:
@@ -23,6 +28,8 @@ func interact() -> void:
 
 func open() -> Tween:
 	tween = create_tween()
+	if locked:
+		return tween
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_method(_set_door_position, 0., 1., 1.)
@@ -34,6 +41,8 @@ func open() -> Tween:
 	
 func close() -> Tween:
 	tween = create_tween()
+	if locked:
+		return tween
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_method(_set_door_position, 1., 0., 1.)
@@ -43,8 +52,28 @@ func close() -> Tween:
 	LevelManager.rebake_navigation()
 	return tween
 
+func lock_closed() -> Tween:
+	locked = false
+	if opened:
+		close()
+	locked = true
+	return tween
+	
+func lock_opened() -> Tween:
+	locked = false
+	if not opened:
+		open()
+	locked = true
+	return tween
+
 func _set_door_position(value:float) -> void:
 	animation_tree.set("parameters/position/TimeSeek/seek_request", value)
 
 func hack_options() -> Array[StringName]:
-	return [&"open", &"close"]
+	return [&"open", &"close", &"lock_closed", &"lock_opened"]
+
+func _hover() -> void:
+	$Label3D.show()
+
+func _off_hover() -> void:
+	$Label3D.hide()

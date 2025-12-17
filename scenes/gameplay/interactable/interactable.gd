@@ -5,3 +5,9 @@ func interact() -> void:
 
 func hack_options() -> Array[StringName]:
 	return []
+
+func _hover() -> void:
+	return
+
+func _off_hover() -> void:
+	return
