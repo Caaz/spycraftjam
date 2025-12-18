@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxj6536g3i52q" path="res://scenes/gameplay/gameplay.gd" id="1_216mg"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_td3fc"]
-[ext_resource type="PackedScene" uid="uid://ctcr8qha71wmq" path="res://scenes/gameplay/level/levels/home.tscn" id="2_0w2j2"]
+[ext_resource type="PackedScene" uid="uid://bcjr7fa370ndp" path="res://scenes/gameplay/level/levels/final_level.tscn" id="2_0w2j2"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_216mg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_2eo0c"]
 [ext_resource type="PackedScene" uid="uid://5xq84ddg5ivb" path="res://scenes/gameplay/alert_bar/alert_bar.tscn" id="13_c6mtg"]

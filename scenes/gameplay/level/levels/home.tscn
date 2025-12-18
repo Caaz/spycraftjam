@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://ctcr8qha71wmq"]
+[gd_scene load_steps=15 format=4 uid="uid://ctcr8qha71wmq"]
 
 [ext_resource type="Script" uid="uid://hcjrta058tvn" path="res://scenes/gameplay/level/level.gd" id="1_xf1pg"]
+[ext_resource type="PackedScene" uid="uid://ry8dxt6n5km2" path="res://scenes/gameplay/level/levels/level_1.tscn" id="2_baubj"]
 [ext_resource type="MeshLibrary" uid="uid://dqfwptoegcljq" path="res://resources/meshlibrary/tileset.tres" id="2_x5f0k"]
 [ext_resource type="TileSet" uid="uid://doj7ujv1pg5sl" path="res://resources/tileset.tres" id="3_rp3yr"]
 [ext_resource type="Script" uid="uid://cqx55iw26lbyf" path="res://addons/grid_map_layer/scripts/grid_map_layer.gd" id="4_baubj"]
@@ -18,6 +19,7 @@ friction = 0.0
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_xf1pg")
+next_level = ExtResource("2_baubj")
 
 [node name="Walls" type="GridMap" parent="."]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)

@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Conversation" load_steps=9 format=3 uid="uid://ct32unw1sh2v1"]
+
+[ext_resource type="Script" uid="uid://dc431etemtpum" path="res://resources/chat_messaage.gd" id="1_5mur6"]
+[ext_resource type="Script" uid="uid://cyulbf46wi1a4" path="res://resources/conversation.gd" id="2_2wkom"]
+
+[sub_resource type="Resource" id="Resource_5mur6"]
+script = ExtResource("1_5mur6")
+name = "Sirius"
+character = 1
+content = "I made it in, now to get to-"
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_2wkom"]
+script = ExtResource("1_5mur6")
+name = "Valora"
+character = 3
+content = "Sirius is that you?"
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_1er7c"]
+script = ExtResource("1_5mur6")
+name = "Sirius"
+character = 1
+content = "Valora?"
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_hv183"]
+script = ExtResource("1_5mur6")
+name = "Valora"
+character = 3
+content = "Sirius, I managed to get control of this channel. Now I can talk you through and help you get to me."
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_n1qjn"]
+script = ExtResource("1_5mur6")
+name = "Sirius"
+character = 1
+content = "You won’t be waiting long. "
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_m5lh4"]
+script = ExtResource("1_5mur6")
+name = "Sirius"
+character = 1
+content = "There’s no time to lose."
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[resource]
+script = ExtResource("2_2wkom")
+messages = Array[ExtResource("1_5mur6")]([SubResource("Resource_5mur6"), SubResource("Resource_2wkom"), SubResource("Resource_1er7c"), SubResource("Resource_hv183"), SubResource("Resource_n1qjn"), SubResource("Resource_m5lh4")])
+metadata/_custom_type_script = "uid://cyulbf46wi1a4"

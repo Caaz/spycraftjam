@@ -17,7 +17,7 @@ func initiate_hack(_from:Node3D) -> bool:
 	var hacked:bool = await hacking_ui.closed
 	
 	await hacking_ui._close().finished
-	GameManager.state = GameManager.State.DEFAULT
+	#GameManager.state = GameManager.State.DEFAULT
 	hacking_ui.queue_free()
 	return hacked
 

@@ -71,7 +71,6 @@ func _physics_process(delta:float) -> void:
 		if Vector2(basis.z.x, basis.z.z).dot(local_position) >= 0:
 			return
 		
-		print("Closing door")
 		last_door_opened.close()
 		last_door_opened = null
 		_wait_tween = create_tween()
@@ -112,7 +111,6 @@ func _try_open_door() -> bool:
 	var door:Door = door_raycast.get_collider() as Door
 	if not door:
 		return false
-	print("Opening door")
 	door.open()
 	last_door_opened = door
 	_wait_tween = create_tween()

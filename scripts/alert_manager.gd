@@ -5,7 +5,7 @@ signal alert_max()
 ## Rate at which the alert level raises in seconds
 const ALERT_RATE = .05
 ## Rate at which the alert level deccays in seconds
-const ALERT_DECAY = 0.05
+const ALERT_DECAY = 0
 ## Time to wait before decaying alert level in seconds
 const DECAY_COOLDOWN_TIME:float = 2
 

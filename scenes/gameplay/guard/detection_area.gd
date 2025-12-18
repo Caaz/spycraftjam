@@ -8,7 +8,7 @@ const textures:Array[Texture2D] = [
 	preload("uid://cxn487tgnbn5a"),
 ]
 
-const ALERT_RATE = .5
+const ALERT_RATE = 1
 const ALERT_DECAY = 0.1
 const DECAY_COOLDOWN_TIME:float = 2
 
