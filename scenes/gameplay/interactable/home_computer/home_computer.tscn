@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1tvaqpbtb3wl"]
+[gd_scene load_steps=7 format=3 uid="uid://d1tvaqpbtb3wl"]
 
 [ext_resource type="PackedScene" uid="uid://m82fkrwji88u" path="res://scenes/gameplay/interactable/interactable.tscn" id="1_0vkxi"]
 [ext_resource type="PackedScene" uid="uid://b0ihikykg1odh" path="res://scenes/gameplay/prop/prop.tscn" id="2_ae1hj"]
+[ext_resource type="Script" uid="uid://dammvj6v4ttek" path="res://scenes/gameplay/interactable/home_computer/home_computer.gd" id="2_tr5vm"]
 [ext_resource type="Material" uid="uid://bihxlsldvaw7v" path="res://resources/materials/flat-cyan.tres" id="3_im8vn"]
+[ext_resource type="Resource" uid="uid://dydj1oeiysmjn" path="res://resources/conversations/home.tres" id="3_vrtde"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g23er"]
 
 [node name="HomeComputer" instance=ExtResource("1_0vkxi")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_tr5vm")
+conversation = ExtResource("3_vrtde")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93439776, 0)
@@ -23,6 +29,7 @@ id = 2
 
 [node name="Label3D" type="Label3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
 pixel_size = 0.002
 billboard = 1
 fixed_size = true

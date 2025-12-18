@@ -2,6 +2,7 @@ class_name Level extends Node3D
 signal completed()
 @onready var player:Player = find_child("Player") as Player
 @onready var teleporter:Teleporter = find_child("Teleporter") as Teleporter
+@export var next_level:PackedScene
 
 func _ready() -> void:
 	if teleporter:

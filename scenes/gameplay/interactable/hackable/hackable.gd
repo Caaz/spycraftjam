@@ -36,6 +36,9 @@ func interact() -> void:
 		return
 	
 	GameManager.state = GameManager.State.DEFAULT
+	var door:Door = target as Door
+	if door:
+		door.locked = false
 	target.call(action)
 
 func _hover() -> void:

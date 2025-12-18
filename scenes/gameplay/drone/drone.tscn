@@ -1,0 +1,123 @@
+[gd_scene load_steps=14 format=3 uid="uid://ditb6aqy5rreb"]
+
+[ext_resource type="Script" uid="uid://p27ueobtt2an" path="res://scenes/gameplay/drone/drone.gd" id="1_dee6c"]
+[ext_resource type="Script" uid="uid://bololiw7rlhov" path="res://scenes/gameplay/guard/detection_area.gd" id="5_2l2yb"]
+[ext_resource type="Script" uid="uid://btae0m6xhtshu" path="res://scenes/gameplay/guard/view_drawer.gd" id="6_qj0ru"]
+[ext_resource type="Shader" uid="uid://ufutx2t3wlr2" path="res://shaders/bar3d.gdshader" id="7_makjs"]
+[ext_resource type="Texture2D" uid="uid://cxn487tgnbn5a" path="res://textures/eye/alert.svg" id="8_34yk0"]
+[ext_resource type="PackedScene" uid="uid://dnifpgqeqk5qp" path="res://models/drone/drone.blend" id="8_i1mlb"]
+[ext_resource type="Script" uid="uid://rkiawb0j3kcp" path="res://scenes/gameplay/drone/interactable.gd" id="8_sr6qb"]
+[ext_resource type="Texture2D" uid="uid://c4cs7faca3gaq" path="res://textures/eye/unaware.svg" id="9_jq780"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ptlu"]
+radius = 0.3
+height = 1.2915039
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4cjav"]
+radius = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2steh"]
+viewport_path = NodePath("DetectionArea/ViewDrawer/Sprite3D/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7men"]
+render_priority = 1
+shader = ExtResource("7_makjs")
+shader_parameter/bar_texture = ExtResource("8_34yk0")
+shader_parameter/fill = 0.38999999128272
+shader_parameter/fill_color = Color(0.9490196, 0.12156863, 0.12156863, 1)
+shader_parameter/unfill_color = Color(0, 0, 0, 1)
+shader_parameter/fill_reverse = false
+shader_parameter/y_billboard = false
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_khfgv"]
+
+[node name="Drone" type="CharacterBody3D" groups=["gameplay_pausable"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_dee6c")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64575195, 0)
+shape = SubResource("CapsuleShape3D_3ptlu")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, 0)
+collision_layer = 0
+script = ExtResource("5_2l2yb")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_4cjav")
+
+[node name="ViewDrawer" type="Node3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100000024, 0)
+script = ExtResource("6_qj0ru")
+arc = 0.25
+ray_count = 36
+
+[node name="Sprite3D" type="Sprite3D" parent="DetectionArea/ViewDrawer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0005540846, 0, -0.0042898655)
+modulate = Color(1, 0, 0, 0.19607843)
+pixel_size = 0.02
+axis = 1
+double_sided = false
+texture = SubResource("ViewportTexture_2steh")
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="DetectionArea/ViewDrawer/Sprite3D"]
+transparent_bg = true
+size = Vector2i(500, 500)
+
+[node name="Polygon2D" type="Polygon2D" parent="DetectionArea/ViewDrawer/Sprite3D/SubViewport"]
+polygon = PackedVector2Array(0, 0, 176.7767, -176.7767, 184.31934, -168.89754, 191.51111, -160.69688, 198.33833, -152.19035, 204.78802, -143.39412, 210.84785, -134.3249, 216.50633, -125, 221.75269, -115.43715, 226.57695, -105.65457, 230.96988, -95.67087, 234.92314, -85.505035, 238.42923, -75.176445, 241.48145, -64.704765, 244.074, -54.10991, 246.20195, -43.412045, 247.86122, -32.63155, 249.04869, -21.788935, 249.76205, -10.904847, 250, 0, 249.76205, 10.904847, 249.04869, 21.788935, 247.86122, 32.63155, 246.20195, 43.412045, 244.074, 54.10991, 241.48145, 64.704765, 238.42923, 75.176445, 234.92314, 85.505035, 230.96988, 95.67087, 226.57695, 105.65457, 221.75269, 115.43715, 216.50633, 125, 210.84785, 134.3249, 204.78802, 143.39412, 198.33833, 152.19035, 191.51111, 160.69688, 184.31934, 168.89754, 176.7767, 176.7767)
+uv = PackedVector2Array(0, 0, 84.68448, -235.2202, 124.35167, -216.87936, 160.2189, -191.9112, 191.1902, -161.07858, 216.3191, -125.323746, 234.83775, -85.73929, 246.18027, -43.534813, 250, 0, 246.18027, 43.534813, 234.83775, 85.73929, 216.3191, 125.323746, 191.1902, 161.07858, 160.2189, 191.9112, 124.35167, 216.87936, 84.68448, 235.2202)
+
+[node name="Camera2D" type="Camera2D" parent="DetectionArea/ViewDrawer/Sprite3D/SubViewport"]
+
+[node name="AwarenessIcon" type="Sprite3D" parent="DetectionArea"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_a7men")
+pixel_size = 0.002
+billboard = 1
+texture = ExtResource("9_jq780")
+metadata/_edit_lock_ = true
+
+[node name="RayCast3D" type="RayCast3D" parent="DetectionArea"]
+collision_mask = 3
+
+[node name="DoorRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, 1)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="drone" parent="." instance=ExtResource("8_i1mlb")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.9876709, 0)
+
+[node name="Interactable" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("8_sr6qb")
+metadata/_custom_type_script = "uid://l334wxoj14c0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8578491, 0)
+shape = SubResource("SphereShape3D_khfgv")
+
+[node name="Label3D" type="Label3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+pixel_size = 0.002
+billboard = 1
+fixed_size = true
+render_priority = 3
+outline_render_priority = 2
+modulate = Color(0.37254903, 1, 1, 1)
+text = "Reset
+[f]"
+outline_size = 24

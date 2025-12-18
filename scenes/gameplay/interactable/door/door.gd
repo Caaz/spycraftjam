@@ -1,17 +1,16 @@
 @tool class_name Door extends Interactable
 var tween:Tween
 
-@export var locked:bool = false
+@export var locked:bool = false:
+	set(new):
+		locked = new
+		_update_text()
 @onready var animation_tree:AnimationTree = find_child("AnimationTree")
 @export var material:Material
 var opened:bool = false:
 	set(new):
 		opened = new
-		var interact_text:String = "%s\n[f]" % ["Close" if opened else "Open"]
-		if locked:
-			$Label3D.text = "[LOCKED]\n%s" % interact_text 
-		else:
-			$Label3D.text = interact_text 
+		_update_text()
 
 @onready var body:StaticBody3D = find_child("StaticBody3D")
 @onready var obstacle:NavigationObstacle3D = find_child("NavigationObstacle3D")
@@ -23,6 +22,12 @@ func _ready() -> void:
 	animation_tree.set("parameters/position/TimeScale/scale", 0)
 	animation_tree.set("parameters/position/TimeSeek/seek_request", 0)
 
+func _update_text() -> void:
+	var interact_text:String = "%s\n[f]" % ["Close" if opened else "Open"]
+	if locked:
+		$Label3D.text = "[LOCKED]\n%s" % interact_text 
+	else:
+		$Label3D.text = interact_text 
 func interact() -> void:
 	if tween and tween.is_running():
 		return

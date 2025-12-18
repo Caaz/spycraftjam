@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://7xaqt4ea04t8"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://7xaqt4ea04t8"]
 
 [ext_resource type="FontFile" uid="uid://0xnw861jwqu7" path="res://fonts/Best Tease.otf" id="1_7ct1h"]
+[ext_resource type="StyleBox" uid="uid://8m8jdda147ro" path="res://resources/stylebox/chatbox.tres" id="1_886mr"]
+[ext_resource type="FontFile" uid="uid://dgiprdmde6ha3" path="res://fonts/The Missing Link.ttf" id="2_b751m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaf3v"]
 content_margin_left = 64.0
@@ -106,6 +108,19 @@ Button/styles/hover = SubResource("StyleBoxFlat_aaf3v")
 Button/styles/normal = SubResource("StyleBoxFlat_owntx")
 ButtonList/base_type = &"VBoxContainer"
 ButtonList/constants/separation = 32
+ChatBox/base_type = &"PanelContainer"
+ChatBox/styles/panel = ExtResource("1_886mr")
+Credit/base_type = &"Label"
+Credit/colors/font_color = Color(0.6, 0.6, 0.6, 1)
+Credit/font_sizes/font_size = 32
+Credit/fonts/font = ExtResource("2_b751m")
+CreditLink/base_type = &"RichTextLabel"
+CreditLink/colors/default_color = Color(0.5529412, 0.99215686, 0.99607843, 1)
+CreditLink/font_sizes/normal_font_size = 24
+CreditLink/fonts/normal_font = ExtResource("2_b751m")
+CreditName/base_type = &"Label"
+CreditName/font_sizes/font_size = 48
+CreditName/fonts/font = ExtResource("2_b751m")
 GridContainer/constants/h_separation = 8
 GridContainer/constants/v_separation = 8
 HackProgress/base_type = &"ProgressBar"

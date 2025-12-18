@@ -25,6 +25,7 @@ GameManager="*res://scripts/game_manager.gd"
 HackManager="*res://scripts/hack_manager.gd"
 LevelManager="*res://scripts/level_manager.gd"
 SceneManager="*res://scripts/scene_manager.gd"
+ChatManager="*res://scripts/chat_manager.gd"
 
 [display]
 
@@ -46,6 +47,7 @@ navigation_region="Main Navigation Region for Levels"
 gameplay_pausable=""
 main=""
 player=""
+narrative_layer=""
 
 [gui]
 

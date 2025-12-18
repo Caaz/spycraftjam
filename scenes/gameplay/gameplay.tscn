@@ -108,5 +108,8 @@ theme_override_constants/margin_bottom = 40
 [node name="AlertBar" parent="HUDLayer/Control/AspectRatioContainer/MarginContainer" instance=ExtResource("13_c6mtg")]
 layout_mode = 2
 
+[node name="NarrativeLayer" type="CanvasLayer" parent="." groups=["narrative_layer"]]
+follow_viewport_enabled = true
+
 [node name="HackLayer" type="CanvasLayer" parent="." groups=["hack_layer"]]
 follow_viewport_enabled = true

@@ -73,7 +73,8 @@ billboard = 1
 fixed_size = true
 render_priority = 1
 modulate = Color(0.37254903, 1, 1, 1)
-text = "Interact"
+text = "Open
+[f]"
 outline_size = 24
 
 [editable path="door"]

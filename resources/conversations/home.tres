@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="Conversation" load_steps=9 format=3 uid="uid://dydj1oeiysmjn"]
+
+[ext_resource type="Script" uid="uid://dc431etemtpum" path="res://resources/chat_messaage.gd" id="1_k0jjj"]
+[ext_resource type="Script" uid="uid://cyulbf46wi1a4" path="res://resources/conversation.gd" id="1_y3x4a"]
+
+[sub_resource type="Resource" id="Resource_4hyos"]
+script = ExtResource("1_k0jjj")
+name = "???"
+content = "…Hello? Static Si…ri…us? Can you hear me?"
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_k0jjj"]
+script = ExtResource("1_k0jjj")
+name = "Sirius"
+character = 1
+content = "No….this cant be real…Valora? Is that you?
+I saw you die on the JANUS mission."
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_8ufr0"]
+script = ExtResource("1_k0jjj")
+name = "Valora"
+character = 3
+content = "I know this might be hard to believe, my love, but I was taken in by AstroDyne Corp. 
+They’ve helped me get back on my feet."
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_uqpeu"]
+script = ExtResource("1_k0jjj")
+name = "Sirius"
+character = 1
+content = "I’m just glad to hear from you. Are you safe?"
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_iu8xl"]
+script = ExtResource("1_k0jjj")
+name = "Valora"
+character = 3
+content = "I don’t know. It took a lot to get to you. 
+
+P…lea…..s….e co….m..e…F…i..nd….m..e"
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[sub_resource type="Resource" id="Resource_caur7"]
+script = ExtResource("1_k0jjj")
+name = "Sirius"
+character = 1
+content = "I’m on my way"
+metadata/_custom_type_script = "uid://dc431etemtpum"
+
+[resource]
+script = ExtResource("1_y3x4a")
+messages = Array[ExtResource("1_k0jjj")]([SubResource("Resource_4hyos"), SubResource("Resource_k0jjj"), SubResource("Resource_8ufr0"), SubResource("Resource_uqpeu"), SubResource("Resource_iu8xl"), SubResource("Resource_caur7")])
+metadata/_custom_type_script = "uid://cyulbf46wi1a4"
