@@ -32,7 +32,12 @@ func load_level_by_scene(packed_scene:PackedScene) -> void:
 	level_container.add_child(level)
 	# TODO: Fade off of black
 	level.process_mode = PROCESS_MODE_INHERIT
-	CameraManager.set_target(level.player)
-	
+	CameraManager.set_target(level.player, true)
+	level.completed.connect(func() -> void:
+		if level.next_level:
+			load_level_by_scene(level.next_level)
+		else:
+			SceneManager.set_scene(SceneManager.Scene.GAME_WIN)
+	)
 	await create_tween().tween_interval(.5).finished
 	rebake_navigation()

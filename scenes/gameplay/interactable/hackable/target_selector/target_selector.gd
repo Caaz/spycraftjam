@@ -29,6 +29,7 @@ func _process(_delta: float) -> void:
 	if _tween and _tween.is_running():
 		return
 	if Input.is_action_just_pressed("interact"):
+		CameraManager.set_target(GameManager.player)
 		done.emit(_selected_target)
 		queue_free()
 	if Input.is_action_just_pressed("move_west"):
@@ -50,3 +51,4 @@ func _selection_updated() -> void:
 	_tween.set_ease(Tween.EASE_IN_OUT)
 	
 	_tween.tween_property(mesh,"global_position", _selected_target.global_position, TWEEN_DURATION)
+	CameraManager.set_target(_selected_target)

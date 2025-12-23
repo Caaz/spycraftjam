@@ -28,6 +28,19 @@ var speed:float:
 var translocator:Translocator
 var thrown_translocator:ThrownTranslocator
 
+func _ready() -> void:
+	interaction_area.area_entered.connect(func(area:Area3D):
+		var interactable:Interactable = area as Interactable
+		if not interactable:
+			return
+		interactable._hover()
+	)
+	interaction_area.area_exited.connect(func(area:Area3D):
+		var interactable:Interactable = area as Interactable
+		if not interactable:
+			return
+		interactable._off_hover()
+	)
 func _physics_process(delta: float) -> void:
 	
 	# Handle movement input, slow down when nothing is pressed.

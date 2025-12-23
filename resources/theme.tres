@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://7xaqt4ea04t8"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://7xaqt4ea04t8"]
 
 [ext_resource type="FontFile" uid="uid://0xnw861jwqu7" path="res://fonts/Best Tease.otf" id="1_7ct1h"]
+[ext_resource type="StyleBox" uid="uid://8m8jdda147ro" path="res://resources/stylebox/chatbox.tres" id="1_886mr"]
+[ext_resource type="FontFile" uid="uid://dgiprdmde6ha3" path="res://fonts/The Missing Link.ttf" id="2_b751m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaf3v"]
 content_margin_left = 64.0
@@ -12,7 +14,7 @@ border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.37254903, 1, 1, 1)
 corner_radius_top_left = 24
 corner_radius_top_right = 24
 corner_radius_bottom_right = 24
@@ -33,12 +35,18 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_886mr"]
-bg_color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhnw2"]
+bg_color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udp68"]
+bg_color = Color(0.53333336, 0.9843137, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_886mr"]
+bg_color = Color(0.40069774, 0.40069774, 0.40069768, 1)
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b751m"]
@@ -47,10 +55,50 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0.7737629, 0.84366727, 0.46817118, 1)
+border_color = Color(0.98039216, 0.99215686, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp2uj"]
+bg_color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iojti"]
+bg_color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.53333336, 0.9843137, 0.9882353, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ct1h"]
-bg_color = Color(0.15, 0.15, 0.15, 1)
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4nwg"]
+content_margin_left = 64.0
+content_margin_top = 32.0
+content_margin_right = 64.0
+content_margin_bottom = 32.0
+bg_color = Color(0.05, 0.05, 0.05, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 15
 
 [resource]
 default_font = ExtResource("1_7ct1h")
@@ -60,16 +108,40 @@ Button/styles/hover = SubResource("StyleBoxFlat_aaf3v")
 Button/styles/normal = SubResource("StyleBoxFlat_owntx")
 ButtonList/base_type = &"VBoxContainer"
 ButtonList/constants/separation = 32
+ChatBox/base_type = &"PanelContainer"
+ChatBox/styles/panel = ExtResource("1_886mr")
+Credit/base_type = &"Label"
+Credit/colors/font_color = Color(0.6, 0.6, 0.6, 1)
+Credit/font_sizes/font_size = 32
+Credit/fonts/font = ExtResource("2_b751m")
+CreditLink/base_type = &"RichTextLabel"
+CreditLink/colors/default_color = Color(0.5529412, 0.99215686, 0.99607843, 1)
+CreditLink/font_sizes/normal_font_size = 24
+CreditLink/fonts/normal_font = ExtResource("2_b751m")
+CreditName/base_type = &"Label"
+CreditName/font_sizes/font_size = 48
+CreditName/fonts/font = ExtResource("2_b751m")
+GridContainer/constants/h_separation = 8
+GridContainer/constants/v_separation = 8
+HackProgress/base_type = &"ProgressBar"
+HackProgress/styles/background = SubResource("StyleBoxFlat_dhnw2")
+HackProgress/styles/fill = SubResource("StyleBoxFlat_udp68")
 HackTile/base_type = &"PanelContainer"
 HackTile/styles/panel = SubResource("StyleBoxFlat_886mr")
 HackTileGoal/base_type = &"PanelContainer"
 HackTileGoal/styles/panel = SubResource("StyleBoxFlat_b751m")
+HackTileHead/base_type = &"PanelContainer"
+HackTileHead/styles/panel = SubResource("StyleBoxFlat_yp2uj")
+HackTilePlayer/base_type = &"PanelContainer"
+HackTilePlayer/styles/panel = SubResource("StyleBoxFlat_iojti")
 HackUI/base_type = &"PanelContainer"
 HackUI/styles/panel = SubResource("StyleBoxFlat_7ct1h")
 MarginContainer/constants/margin_bottom = 24
 MarginContainer/constants/margin_left = 24
 MarginContainer/constants/margin_right = 24
 MarginContainer/constants/margin_top = 24
+Modal/base_type = &"PanelContainer"
+Modal/styles/panel = SubResource("StyleBoxFlat_d4nwg")
 TileLabel/base_type = &"Label"
 TileLabel/font_sizes/font_size = 48
 TileLabel/fonts/font = ExtResource("1_7ct1h")

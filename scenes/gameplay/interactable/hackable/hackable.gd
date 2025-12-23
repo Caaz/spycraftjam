@@ -1,6 +1,8 @@
 class_name Hackable extends Interactable
 
 @onready var hack_range:Area3D = find_child("HackRange")
+@onready var range_mesh:MeshInstance3D = find_child("RangeMesh")
+var range_tween:Tween
 func interact() -> void:
 	GameManager.state = GameManager.State.PAUSED
 	var hackable_targets:Array = hack_range.get_overlapping_areas()
@@ -34,4 +36,27 @@ func interact() -> void:
 		return
 	
 	GameManager.state = GameManager.State.DEFAULT
+	var door:Door = target as Door
+	if door:
+		door.locked = false
 	target.call(action)
+
+func _hover() -> void:
+	if range_tween and range_tween.is_running():
+		range_tween.stop()
+	range_tween = create_tween()
+	var shader:ShaderMaterial = range_mesh.mesh.surface_get_material(0) as ShaderMaterial
+	range_tween.tween_method(func(value:float) -> void:
+		shader.set_shader_parameter("height", value)
+	, 0., 1., .3)
+	$Label3D.show()
+
+func _off_hover() -> void:
+	if range_tween and range_tween.is_running():
+		range_tween.stop()
+	range_tween = create_tween()
+	var shader:ShaderMaterial = range_mesh.mesh.surface_get_material(0) as ShaderMaterial
+	range_tween.tween_method(func(value:float) -> void:
+		shader.set_shader_parameter("height", value)
+	, 1., 0., .3)
+	$Label3D.hide()

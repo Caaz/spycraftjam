@@ -9,6 +9,14 @@ var state:State = State.DEFAULT:
 	set(new):
 		state = new
 		_state_updated()
+var player:Player:
+	get:
+		return get_tree().get_first_node_in_group(&"player")
+
+func _ready() -> void:
+	AlertManager.alert_max.connect(func():
+		SceneManager.set_scene(SceneManager.Scene.GAME_OVER)
+	)
 
 func _state_updated() -> void:
 	var pausable_nodes:Array[Node] = get_tree().get_nodes_in_group(&"gameplay_pausable")

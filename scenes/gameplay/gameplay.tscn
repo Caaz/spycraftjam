@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxj6536g3i52q" path="res://scenes/gameplay/gameplay.gd" id="1_216mg"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_td3fc"]
-[ext_resource type="PackedScene" uid="uid://b8y8oekkqf0pp" path="res://scenes/gameplay/level/levels/not-home.tscn" id="2_0w2j2"]
+[ext_resource type="PackedScene" uid="uid://bcjr7fa370ndp" path="res://scenes/gameplay/level/levels/final_level.tscn" id="2_0w2j2"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_216mg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_2eo0c"]
 [ext_resource type="PackedScene" uid="uid://5xq84ddg5ivb" path="res://scenes/gameplay/alert_bar/alert_bar.tscn" id="13_c6mtg"]
@@ -65,6 +65,7 @@ follow_mode = 5
 tween_resource = SubResource("Resource_p0jio")
 tween_on_load = false
 follow_offset = Vector3(-2, 5, 1)
+follow_damping = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="LevelContainer/Camera" groups=["camera"]]
@@ -107,4 +108,8 @@ theme_override_constants/margin_bottom = 40
 [node name="AlertBar" parent="HUDLayer/Control/AspectRatioContainer/MarginContainer" instance=ExtResource("13_c6mtg")]
 layout_mode = 2
 
+[node name="NarrativeLayer" type="CanvasLayer" parent="." groups=["narrative_layer"]]
+follow_viewport_enabled = true
+
 [node name="HackLayer" type="CanvasLayer" parent="." groups=["hack_layer"]]
+follow_viewport_enabled = true

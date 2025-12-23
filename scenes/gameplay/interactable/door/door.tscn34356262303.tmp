@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://dokllln73agac"]
+
+[ext_resource type="PackedScene" uid="uid://d1lc34dthhm3b" path="res://models/door/door.blend" id="1_bu3y2"]
+[ext_resource type="Script" uid="uid://bewnitqcdcaux" path="res://scenes/gameplay/interactable/door/door.gd" id="1_odsy8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u3mo4"]
+size = Vector3(1.9882813, 2.2163696, 0.70373535)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_odsy8"]
+animation = &"open"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_u3mo4"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_bsixq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_iwle0"]
+nodes/output/position = Vector2(1140, 120)
+nodes/Open/node = SubResource("AnimationNodeAnimation_odsy8")
+nodes/Open/position = Vector2(317, 165)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_u3mo4")
+nodes/TimeScale/position = Vector2(540, 180)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_bsixq")
+nodes/TimeSeek/position = Vector2(800, 180)
+node_connections = [&"output", 0, &"TimeSeek", &"TimeScale", 0, &"Open", &"TimeSeek", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ht72"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gddbs"]
+states/position/node = SubResource("AnimationNodeBlendTree_iwle0")
+states/position/position = Vector2(538, 80)
+transitions = ["Start", "position", SubResource("AnimationNodeStateMachineTransition_5ht72")]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odsy8"]
+size = Vector3(2.0017395, 2.123169, 0.6782532)
+
+[node name="Door" type="Area3D"]
+collision_layer = 24
+collision_mask = 0
+script = ExtResource("1_odsy8")
+
+[node name="door" parent="." instance=ExtResource("1_bu3y2")]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.033265114)
+vertices = PackedVector3Array(0.997921, 0, -0.363842, -1.0191131, 0, -0.359154, -1.0269079, 0, 0.29586875, 0.9903246, 0, 0.29714227)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009765625, 1.1009216, 0.0032348633)
+shape = SubResource("BoxShape3D_u3mo4")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../door")
+callback_mode_process = 0
+tree_root = SubResource("AnimationNodeStateMachine_gddbs")
+anim_player = NodePath("../door/AnimationPlayer")
+parameters/position/TimeScale/scale = 0.0
+parameters/position/TimeSeek/seek_request = -1.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009017944, 1.0512211, -0.0021514893)
+shape = SubResource("BoxShape3D_odsy8")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+pixel_size = 0.002
+billboard = 1
+fixed_size = true
+modulate = Color(0.37254903, 1, 1, 1)
+text = "Interact"
+outline_size = 24
+
+[editable path="door"]
